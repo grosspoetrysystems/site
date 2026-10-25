@@ -8,12 +8,23 @@ import { PENDING, PRODUCTS } from "@/lib/catalogue";
 const LINK =
   "border-current border-b no-underline hover:bg-foreground hover:text-background";
 
+/** Wraps content in a link to the project's repository when it has a public one. */
+const Source = ({ href, children }: { href?: string; children: ReactNode }) =>
+  href ? (
+    <a className="no-underline" href={href}>
+      {children}
+    </a>
+  ) : (
+    children
+  );
+
 const Pin = ({
   id,
   badge,
   name,
   picture,
   summary,
+  source,
   pending = false,
   children,
 }: {
@@ -22,6 +33,7 @@ const Pin = ({
   name: string;
   picture: Picture;
   summary: string;
+  source?: string;
   pending?: boolean;
   children: ReactNode;
 }) => (
@@ -35,20 +47,22 @@ const Pin = ({
       } as CSSProperties
     }
   >
-    <div className="relative">
-      <img
-        alt={picture.title}
-        className="wall-photo block h-auto w-full"
-        decoding="async"
-        height={picture.height}
-        loading="lazy"
-        src={`/wall/${picture.slug}.webp`}
-        width={picture.width}
-      />
-      <span className="bg-foreground text-background absolute right-0 bottom-0 px-2.5 py-1.5 font-mono text-xs">
-        {badge}
-      </span>
-    </div>
+    <Source href={source}>
+      <div className="relative">
+        <img
+          alt={picture.title}
+          className="wall-photo block h-auto w-full"
+          decoding="async"
+          height={picture.height}
+          loading="lazy"
+          src={`/wall/${picture.slug}.webp`}
+          width={picture.width}
+        />
+        <span className="bg-foreground text-background absolute right-0 bottom-0 px-2.5 py-1.5 font-mono text-xs">
+          {badge}
+        </span>
+      </div>
+    </Source>
     <div className="rule-b flex gap-4 pt-4 pb-5">
       <Mark
         className={
@@ -58,7 +72,7 @@ const Pin = ({
       />
       <div className="min-w-0 flex-1">
         <h3 className="font-display text-2xl leading-none font-extrabold tracking-tight uppercase">
-          {name}
+          <Source href={source}>{name}</Source>
         </h3>
         <p className="mt-2 mb-4">{summary}</p>
         {children}
@@ -77,6 +91,7 @@ export const Wall = () => (
         key={p.id}
         name={p.name}
         picture={p.picture}
+        source={p.links.find((l) => l.label === "source")?.href}
         summary={p.summary}
       >
         <InstallCommand command={p.install} />
@@ -101,6 +116,7 @@ export const Wall = () => (
         name={p.name}
         pending
         picture={p.picture}
+        source={p.source}
         summary={p.summary}
       >
         <div className="label">
