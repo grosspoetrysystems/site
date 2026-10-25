@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+import { jsonLd, SITE } from "@/lib/agents";
 import { PALETTE_STORAGE_KEY, PALETTES } from "@/lib/palette";
 
 import appCss from "@/styles.css?url";
@@ -14,6 +15,9 @@ import appCss from "@/styles.css?url";
 const TITLE = "Gross Poetry Systems";
 const DESCRIPTION =
   "Control surfaces for uncertain machines. Small, open-source tools for agent-era work.";
+
+// Prerendered at build, so this is the date the deployed page was last generated.
+const BUILT = new Date().toISOString().slice(0, 10);
 
 // Applies a saved palette before first paint so returning visitors don't see a flash of cobalt.
 const RESTORE_PALETTE = `try{var p=localStorage.getItem(${JSON.stringify(PALETTE_STORAGE_KEY)});if(${JSON.stringify(PALETTES)}.indexOf(p)>-1)document.documentElement.dataset.palette=p}catch(e){}`;
@@ -39,9 +43,10 @@ export const Route = createRootRoute({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:url", content: "https://grosspoetry.systems" },
+      { property: "og:url", content: SITE },
     ],
     links: [
+      { rel: "canonical", href: `${SITE}/` },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
@@ -55,7 +60,10 @@ export const Route = createRootRoute({
       },
       { rel: "stylesheet", href: appCss },
     ],
-    scripts: [{ children: RESTORE_PALETTE }],
+    scripts: [
+      { children: RESTORE_PALETTE },
+      { type: "application/ld+json", children: JSON.stringify(jsonLd(BUILT)) },
+    ],
   }),
   component: () => <Outlet />,
   shellComponent: RootDocument,
