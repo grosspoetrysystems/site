@@ -1,0 +1,14 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+.DS_Store
+.turbo/
+.wrangler/
+.output/
+.tanstack/
+worker-configuration.d.ts
+src/tokens.css

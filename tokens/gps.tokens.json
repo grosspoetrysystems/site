@@ -1,0 +1,228 @@
+{
+  "$description": "Gross Poetry Systems design tokens (W3C DTCG). Compiled to CSS variables by Terrazzo (terrazzo.config.ts).",
+  "color": {
+    "$type": "color",
+    "$description": "Two-colour palettes. $value is the default (cobalt); each mode is a palette the visitor can switch to.",
+    "ground": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.149, 0.204, 0.788],
+        "hex": "#2634C9"
+      },
+      "$extensions": {
+        "mode": {
+          "cobalt": {
+            "colorSpace": "srgb",
+            "components": [0.149, 0.204, 0.788],
+            "hex": "#2634C9"
+          },
+          "orange": {
+            "colorSpace": "srgb",
+            "components": [0.957, 0.314, 0.118],
+            "hex": "#F4501E"
+          },
+          "marigold": {
+            "colorSpace": "srgb",
+            "components": [0.961, 0.659, 0.118],
+            "hex": "#F5A81E"
+          },
+          "lime": {
+            "colorSpace": "srgb",
+            "components": [0.659, 0.8, 0.227],
+            "hex": "#A8CC3A"
+          },
+          "teal": {
+            "colorSpace": "srgb",
+            "components": [0.071, 0.647, 0.647],
+            "hex": "#12A5A5"
+          },
+          "lavender": {
+            "colorSpace": "srgb",
+            "components": [0.788, 0.718, 0.91],
+            "hex": "#C9B7E8"
+          },
+          "bone": {
+            "colorSpace": "srgb",
+            "components": [0.91, 0.882, 0.812],
+            "hex": "#E8E1CF"
+          }
+        }
+      }
+    },
+    "ink": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.937, 0.906, 0.839],
+        "hex": "#EFE7D6"
+      },
+      "$extensions": {
+        "mode": {
+          "cobalt": {
+            "colorSpace": "srgb",
+            "components": [0.937, 0.906, 0.839],
+            "hex": "#EFE7D6"
+          },
+          "orange": {
+            "colorSpace": "srgb",
+            "components": [0.09, 0.078, 0.051],
+            "hex": "#17140D"
+          },
+          "marigold": {
+            "colorSpace": "srgb",
+            "components": [0.102, 0.082, 0.031],
+            "hex": "#1A1508"
+          },
+          "lime": {
+            "colorSpace": "srgb",
+            "components": [0.082, 0.094, 0.043],
+            "hex": "#15180B"
+          },
+          "teal": {
+            "colorSpace": "srgb",
+            "components": [0.043, 0.086, 0.082],
+            "hex": "#0B1615"
+          },
+          "lavender": {
+            "colorSpace": "srgb",
+            "components": [0.141, 0.11, 0.188],
+            "hex": "#241C30"
+          },
+          "bone": {
+            "colorSpace": "srgb",
+            "components": [0.09, 0.078, 0.051],
+            "hex": "#17140D"
+          }
+        }
+      }
+    }
+  },
+  "font": {
+    "$type": "fontFamily",
+    "display": {
+      "$description": "Stand-in for Klim Söhne until licensed.",
+      "$value": ["Archivo", "sans-serif"]
+    },
+    "mono": {
+      "$value": ["Courier Prime", "monospace"]
+    },
+    "serif": {
+      "$value": ["Newsreader", "serif"]
+    }
+  },
+  "text": {
+    "$type": "dimension",
+    "$description": "Type scale. Fluid sizes have a min and max; the viewport rate lives in src/styles.css.",
+    "body": {
+      "$value": {
+        "value": 17,
+        "unit": "px"
+      }
+    },
+    "notes": {
+      "min": {
+        "$value": {
+          "value": 18,
+          "unit": "px"
+        }
+      },
+      "max": {
+        "$value": {
+          "value": 22,
+          "unit": "px"
+        }
+      }
+    },
+    "lede": {
+      "min": {
+        "$value": {
+          "value": 20,
+          "unit": "px"
+        }
+      },
+      "max": {
+        "$value": {
+          "value": 28,
+          "unit": "px"
+        }
+      }
+    },
+    "contact": {
+      "min": {
+        "$value": {
+          "value": 34,
+          "unit": "px"
+        }
+      },
+      "max": {
+        "$value": {
+          "value": 72,
+          "unit": "px"
+        }
+      }
+    },
+    "masthead": {
+      "$description": "The GROSS POETRY SYSTEMS wordmark.",
+      "min": {
+        "$value": {
+          "value": 46,
+          "unit": "px"
+        }
+      },
+      "max": {
+        "$value": {
+          "value": 132,
+          "unit": "px"
+        }
+      }
+    }
+  },
+  "tracking": {
+    "$type": "dimension",
+    "label": {
+      "$value": {
+        "value": 0.14,
+        "unit": "em"
+      }
+    },
+    "contact": {
+      "$value": {
+        "value": -0.03,
+        "unit": "em"
+      }
+    },
+    "masthead": {
+      "$value": {
+        "value": -0.045,
+        "unit": "em"
+      }
+    }
+  },
+  "leading": {
+    "$type": "number",
+    "body": {
+      "$value": 1.45
+    },
+    "masthead": {
+      "$value": 0.86
+    }
+  },
+  "rule": {
+    "$type": "dimension",
+    "$description": "Width of the ink rules that divide the page.",
+    "width": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    }
+  },
+  "motion": {
+    "$description": "Easing for sliding panels (Base UI drawer recipe).",
+    "ease": {
+      "$type": "cubicBezier",
+      "drawer": {
+        "$value": [0.32, 0.72, 0, 1]
+      }
+    }
+  }
+}
