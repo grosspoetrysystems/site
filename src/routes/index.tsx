@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+import { FloatingMark } from "@/components/floating-mark";
+import { Mark } from "@/components/mark";
 import { MobileIndex } from "@/components/mobile-index";
 import { PalettePicker } from "@/components/palette-picker";
 import { SiteIndex } from "@/components/site-index";
@@ -29,19 +31,23 @@ const Section = ({
 const Home = () => (
   <>
     <MobileIndex />
+    <FloatingMark />
     <div className="flex flex-col md:flex-row md:items-start">
       <main className="min-w-0 flex-1">
         <header>
-          <h1
-            className="font-display text-masthead leading-masthead tracking-masthead px-gutter pt-8 pb-6 font-black uppercase"
-            id="masthead"
-          >
-            Gross
-            <br />
-            Poetry
-            <br />
-            Systems
-          </h1>
+          <div className="px-gutter flex items-end justify-between gap-8 pt-8 pb-6">
+            <h1
+              className="font-display text-masthead leading-masthead tracking-masthead font-black uppercase"
+              id="masthead"
+            >
+              Gross
+              <br />
+              Poetry
+              <br />
+              Systems
+            </h1>
+            <Mark className="hidden size-45 flex-none xl:block" />
+          </div>
           <hr className="rule-t m-0 border-0" />
           <p className="text-lede px-gutter max-w-prose py-8 leading-snug">
             Control surfaces for uncertain machines. A small catalogue of
@@ -71,7 +77,7 @@ const Home = () => (
         </Section>
 
         <footer className="rule-t px-gutter pt-6 pb-20 font-mono text-xs">
-          Catalogue no. 0001 · grosspoetry.systems ·{" "}
+          grosspoetry.systems ·{" "}
           <a className={LINK} href="https://github.com/grosspoetrysystems">
             github.com/grosspoetrysystems
           </a>{" "}

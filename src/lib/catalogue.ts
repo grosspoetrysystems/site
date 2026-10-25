@@ -37,7 +37,7 @@ const repo = (name: string) => `https://github.com/grosspoetrysystems/${name}`;
 export const PRODUCTS: readonly Product[] = [
   {
     id: "poolboy",
-    number: "GPS-0002",
+    number: "GPS-0001",
     kind: "Docs",
     name: "Poolboy",
     summary:
@@ -57,7 +57,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "helicopter",
-    number: "GPS-0003",
+    number: "GPS-0002",
     kind: "Governance",
     name: "Helicopter",
     summary:
@@ -77,7 +77,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "vernacular",
-    number: "GPS-0004",
+    number: "GPS-0003",
     kind: "Workspace",
     name: "Vernacular",
     summary:
@@ -97,7 +97,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "oompf",
-    number: "GPS-0005",
+    number: "GPS-0004",
     kind: "Profiles",
     name: "OOMPF",
     summary:
@@ -120,7 +120,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: "crooked-pattern",
-    number: "GPS-0006",
+    number: "GPS-0005",
     kind: "Readiness",
     name: "Crooked Pattern",
     summary:
