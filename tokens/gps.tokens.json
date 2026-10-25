@@ -223,5 +223,23 @@
         "$value": [0.32, 0.72, 0, 1]
       }
     }
+  },
+  "space": {
+    "$type": "dimension",
+    "$description": "Horizontal gutter: compact on phones, wide from the md breakpoint up.",
+    "gutter": {
+      "compact": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "wide": {
+        "$value": {
+          "value": 32,
+          "unit": "px"
+        }
+      }
+    }
   }
 }

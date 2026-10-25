@@ -1,3 +1,14 @@
+/** A photo from the wall, assigned to one project. Placement is a percentage of the column. */
+export interface Picture {
+  /** File in public/wall, without extension. */
+  slug: string;
+  title: string;
+  width: number;
+  height: number;
+  span: number;
+  offset: number;
+}
+
 export interface Product {
   id: string;
   install: string;
@@ -6,13 +17,16 @@ export interface Product {
   links: readonly { label: string; href: string }[];
   name: string;
   number: string;
+  picture: Picture;
   summary: string;
   version: string;
 }
 
 export interface PendingProduct {
+  id: string;
   kind: string;
   name: string;
+  picture: Picture;
   source?: string;
   summary: string;
 }
@@ -32,6 +46,14 @@ export const PRODUCTS: readonly Product[] = [
     version: "v0.3.0",
     license: "GPL-3.0",
     links: [{ label: "source", href: repo("poolboy") }],
+    picture: {
+      slug: "text-painting-maine",
+      title: "text painting · (Maine, black flies)",
+      width: 1372,
+      height: 1820,
+      span: 62,
+      offset: 6,
+    },
   },
   {
     id: "helicopter",
@@ -44,6 +66,14 @@ export const PRODUCTS: readonly Product[] = [
     version: "v0.2.0",
     license: "MIT",
     links: [{ label: "source", href: repo("helicopter") }],
+    picture: {
+      slug: "roundabout-fire",
+      title: "roundabout on fire",
+      width: 1080,
+      height: 1080,
+      span: 78,
+      offset: 0,
+    },
   },
   {
     id: "vernacular",
@@ -56,6 +86,14 @@ export const PRODUCTS: readonly Product[] = [
     version: "v0.3.0",
     license: "MIT",
     links: [{ label: "source", href: repo("vernacular") }],
+    picture: {
+      slug: "building-blankets",
+      title: "anon. · building under blankets",
+      width: 1080,
+      height: 1439,
+      span: 52,
+      offset: 40,
+    },
   },
   {
     id: "oompf",
@@ -71,6 +109,14 @@ export const PRODUCTS: readonly Product[] = [
       { label: "oompf.run", href: "https://oompf.run" },
       { label: "source", href: repo("oompf") },
     ],
+    picture: {
+      slug: "leatherhead",
+      title: "Leatherhead · McFarlane",
+      width: 1600,
+      height: 1600,
+      span: 70,
+      offset: 8,
+    },
   },
   {
     id: "crooked-pattern",
@@ -84,36 +130,61 @@ export const PRODUCTS: readonly Product[] = [
     version: "v0.1.2",
     license: "MIT",
     links: [{ label: "source", href: repo("crooked-pattern") }],
+    picture: {
+      slug: "bargello-eye-wave",
+      title: "bargello · eye / wave",
+      width: 1200,
+      height: 1200,
+      span: 58,
+      offset: 34,
+    },
   },
 ];
 
 export const PENDING: readonly PendingProduct[] = [
   {
+    id: "sea-noise",
     kind: "Memory",
     name: "Sea Noise",
     summary:
-      "A personal cognition layer on a Markdown vault. Local-first, audience of one, a mirror rather than an assistant.",
+      "A personal cognition layer on a Markdown vault. Local-first, with an audience of one.",
     source: repo("sea-noise"),
+    picture: {
+      slug: "flavin-orange-room",
+      title: "Flavin · the orange room",
+      width: 1412,
+      height: 1816,
+      span: 56,
+      offset: 4,
+    },
   },
   {
+    id: "dummy",
     kind: "Secrets",
     name: "Dummy",
     summary:
-      "Secrets by indirection: pointers in your .env, plaintext only at the point of use, paired with a governed execution sandbox.",
+      "Your .env holds pointers instead of secrets. Plaintext exists only at the point of use, inside a governed execution sandbox.",
+    picture: {
+      slug: "dead-neon",
+      title: "dead neon · full daylight",
+      width: 1338,
+      height: 1830,
+      span: 64,
+      offset: 30,
+    },
   },
   {
+    id: "steel-cars",
     kind: "Harness",
     name: "Steel Cars",
     summary: "A composable single-agent runtime. Unpainted on purpose.",
+    picture: {
+      slug: "tricycle-rain",
+      title: "anon. · tricycle, rain, gold hour",
+      width: 1336,
+      height: 892,
+      span: 70,
+      offset: 24,
+    },
   },
 ];
-
-export const PRACTICE_NOTES = [
-  "Local-first, human-first. The individual is primary.",
-  "Choose the most durable tool, language, or pattern for the job. Minimize dependencies.",
-  "Publish into the ecosystems where the audience and collaborators already are.",
-  "Shared orchestration, not shared visibility.",
-  "Governance is part of UX, not a layer above it.",
-  "Ship the canonical implementation. Adoption is by example.",
-  "Subtract until restraint shows. Features that don’t earn their keep are removed, not deferred.",
-] as const;

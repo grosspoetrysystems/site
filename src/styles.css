@@ -59,6 +59,27 @@
   --leading-masthead: var(--gps-leading-masthead);
   --border-width-rule: var(--gps-rule-width);
   --ease-drawer: var(--gps-motion-ease-drawer);
+  --spacing-gutter: var(--gutter);
+}
+
+/* One horizontal gutter for every edge on the page. */
+:root {
+  --gutter: var(--gps-space-gutter-compact);
+}
+
+@media (width >= 48rem) {
+  :root {
+    --gutter: var(--gps-space-gutter-wide);
+  }
+}
+
+/* How wall photos sit on the ground: light ink on cobalt screens, dark ink everywhere else multiplies. */
+:root {
+  --blend: screen;
+}
+
+[data-palette]:not([data-palette="cobalt"]) {
+  --blend: multiply;
 }
 
 /* shadcn semantic colours as Tailwind theme values. */
@@ -90,6 +111,11 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
   }
 
   body {
@@ -124,7 +150,54 @@
   border-left: var(--border-width-rule) solid var(--color-foreground);
 }
 
+/* A rule above a table row that runs edge to edge of its clipped container, whatever the column. */
+@utility rule-row {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline: -100vw;
+    top: 0;
+    border-top: var(--border-width-rule) solid var(--color-foreground);
+  }
+}
+
 /* Bottom padding that clears the iOS home indicator. */
 @utility pb-safe {
   padding-bottom: calc(--spacing(8) + env(safe-area-inset-bottom, 0px));
+}
+
+/* Wall placement: loose offsets on wide screens, a stepped rhythm on phones. */
+@utility wall-pin {
+  width: var(--span);
+  margin-left: var(--offset);
+  margin-bottom: --spacing(16);
+
+  @media (width < 48rem) {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: --spacing(10);
+
+    &:nth-child(3n - 1) {
+      width: 84%;
+      margin-left: 16%;
+    }
+
+    &:nth-child(3n) {
+      width: 78%;
+    }
+  }
+}
+
+/* Wall photos: monochrome and blended into the palette; full colour on hover. */
+@utility wall-photo {
+  filter: grayscale(1) contrast(1.06);
+  mix-blend-mode: var(--blend);
+  transition: filter 0.45s ease;
+
+  .group:hover & {
+    filter: none;
+    mix-blend-mode: normal;
+  }
 }
