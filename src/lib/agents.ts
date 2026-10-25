@@ -43,8 +43,38 @@ export const llmsTxt = () =>
     "- office@grosspoetry.systems",
     "- https://github.com/grosspoetrysystems",
     "",
+    "## Machine-readable",
+    "",
+    `- Catalogue as JSON: ${SITE}/catalogue.json`,
+    `- OpenAPI description: ${SITE}/openapi.json`,
+    "",
   ].join("\n");
 
+/** The catalogue as data: what /catalogue.json serves and public/openapi.json describes. */
+export const catalogueJson = () => ({
+  name: NAME,
+  url: SITE,
+  products: PRODUCTS.map((p) => ({
+    id: p.id,
+    number: p.number,
+    name: p.name,
+    kind: p.kind,
+    summary: p.summary,
+    version: p.version,
+    license: p.license,
+    install: p.install,
+    links: Object.fromEntries(p.links.map((l) => [l.label, l.href])),
+    llms: p.llms ?? null,
+    graph: p.graph ?? null,
+  })),
+  pending: PENDING.map((p) => ({
+    id: p.id,
+    name: p.name,
+    kind: p.kind,
+    summary: p.summary,
+    source: p.source ?? null,
+  })),
+});
 export const sitemapXml = (lastmod: string) =>
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

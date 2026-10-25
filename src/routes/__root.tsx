@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+import { MarkSprite } from "@/components/mark";
 import { jsonLd, SITE } from "@/lib/agents";
 import { PALETTE_STORAGE_KEY, PALETTES } from "@/lib/palette";
 
@@ -28,6 +29,7 @@ const RootDocument = ({ children }: { children: ReactNode }) => (
       <HeadContent />
     </head>
     <body>
+      <MarkSprite />
       {children}
       <Scripts />
     </body>
