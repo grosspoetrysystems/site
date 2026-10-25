@@ -6,7 +6,7 @@
     "build": "pnpm tokens && vite build",
     "cf-typegen": "wrangler types",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm knip",
-    "deploy": "pnpm build && wrangler deploy",
+    "deploy": "pnpm build && env -u CF_API_TOKEN -u CF_ACCOUNT_ID wrangler deploy",
     "dev": "pnpm tokens && vite dev",
     "fix": "pnpm tokens && ultracite fix",
     "knip": "knip",
