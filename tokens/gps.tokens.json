@@ -99,7 +99,6 @@
   "font": {
     "$type": "fontFamily",
     "display": {
-      "$description": "Stand-in for Klim Söhne until licensed.",
       "$value": ["Archivo", "sans-serif"]
     },
     "mono": {
