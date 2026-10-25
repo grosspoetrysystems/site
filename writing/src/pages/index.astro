@@ -1,0 +1,27 @@
+---
+import Base from "../layouts/base.astro";
+import { isoDate, publishedPosts } from "../lib/posts";
+
+const posts = await publishedPosts();
+---
+
+<Base title="Writing" description="Notes from Gross Poetry Systems.">
+  <h1 class="page-title">Writing</h1>
+  {
+    posts.length === 0 ? (
+      <p class="empty">Nothing published yet.</p>
+    ) : (
+      <ol class="index">
+        {posts.map((post) => (
+          <li>
+            <a href={`${import.meta.env.BASE_URL}${post.id}/`}>
+              <time datetime={isoDate(post.data.date)}>{isoDate(post.data.date)}</time>
+              <span class="title">{post.data.title}</span>
+              {post.data.description && <span class="description">{post.data.description}</span>}
+            </a>
+          </li>
+        ))}
+      </ol>
+    )
+  }
+</Base>

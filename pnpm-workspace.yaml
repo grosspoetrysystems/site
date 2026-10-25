@@ -5,3 +5,6 @@ allowBuilds:
   sharp: true
 
 minimumReleaseAge: 10080
+
+packages:
+  - writing

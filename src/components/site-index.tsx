@@ -5,16 +5,21 @@ const ENTRIES = [
   ...PENDING.map((p) => ({ ...p, number: "Pending" })),
 ];
 
-const SECTIONS = ["Catalogue", "About", "Contact"] as const;
+const SECTIONS = [
+  ["Catalogue", "#catalogue"],
+  ["About", "#about"],
+  ["Contact", "#contact"],
+  ["Writing", "/writing/"],
+] as const;
 
 /** Section and product links, shared by the desktop rail and the mobile drawer. */
 export const SiteIndex = ({ onNavigate }: { onNavigate?: () => void }) => (
   <>
     <nav aria-label="Sections" className="px-gutter pb-6">
-      {SECTIONS.map((label) => (
+      {SECTIONS.map(([label, href]) => (
         <a
           className="font-display hover:bg-foreground hover:text-background block text-2xl leading-tight font-extrabold no-underline"
-          href={`#${label.toLowerCase()}`}
+          href={href}
           key={label}
           onClick={onNavigate}
         >

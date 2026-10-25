@@ -19,3 +19,4 @@ User-agent: CCBot
 Disallow: /
 
 Sitemap: https://grosspoetry.systems/sitemap.xml
+Sitemap: https://grosspoetry.systems/writing/sitemap-index.xml

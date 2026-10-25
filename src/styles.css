@@ -126,9 +126,10 @@
     @apply bg-foreground text-background;
   }
 
-  /* Anchored sections clear the sticky mobile index bar. */
+  /* Anchored sections clear the sticky mobile index bar, and the floating mark on md+
+     (top-4 + size-26 = 30). */
   [id] {
-    @apply scroll-mt-12 md:scroll-mt-0;
+    @apply scroll-mt-12 md:scroll-mt-30;
   }
 }
 
@@ -168,14 +169,16 @@
   padding-bottom: calc(--spacing(8) + env(safe-area-inset-bottom, 0px));
 }
 
-/* Wall placement: loose offsets on wide screens, a stepped rhythm on phones. */
+/* Wall placement: loose offsets only when the column is wide (xl), a stepped rhythm below that. */
 @utility wall-pin {
   width: var(--span);
   margin-left: var(--offset);
   margin-bottom: --spacing(16);
 
-  @media (width < 48rem) {
+  @media (width < 80rem) {
     width: 100%;
+    /* Portrait photos at full mid-width run taller than the viewport. */
+    max-width: 40rem;
     margin-left: 0;
     margin-bottom: --spacing(10);
 

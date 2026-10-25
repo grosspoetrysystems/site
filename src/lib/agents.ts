@@ -47,6 +47,7 @@ export const llmsTxt = () =>
     "",
     `- Catalogue as JSON: ${SITE}/catalogue.json`,
     `- OpenAPI description: ${SITE}/openapi.json`,
+    `- Writing (RSS): ${SITE}/writing/rss.xml`,
     "",
   ].join("\n");
 

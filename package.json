@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm tokens && vite build",
+    "build": "pnpm tokens && pnpm --filter writing build && vite build",
     "cf-typegen": "wrangler types",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm knip",
     "deploy": "pnpm build && env -u CF_API_TOKEN -u CF_ACCOUNT_ID wrangler deploy",
@@ -15,7 +15,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "tokens": "tz build",
-    "typecheck": "pnpm tokens && tsc --noEmit"
+    "typecheck": "pnpm tokens && tsc --noEmit && pnpm --filter writing exec astro sync && tsc --noEmit -p writing",
+    "writing": "pnpm tokens && pnpm --filter writing dev"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
