@@ -10,7 +10,7 @@ import { routeHead } from "@/lib/share";
 const ProductPage = () => {
   const p = Route.useLoaderData();
   return (
-    <div className="px-gutter font-display flex flex-col gap-8 py-8 text-sm leading-relaxed md:flex-row-reverse md:justify-between">
+    <div className="px-gutter font-display flex flex-col gap-8 pt-8 pb-20 text-sm leading-relaxed md:flex-row-reverse md:justify-between">
       <nav aria-label="Catalogue" className="md:text-right">
         <Link className={LINK} to="/">
           Gross Poetry Systems
