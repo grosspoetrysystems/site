@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { SITE } from "@/lib/agents";
+import { SITE } from "@/lib/share";
 
 // RFC 9727 API catalog: one read-only API, described by /openapi.json.
 const LINKSET = {

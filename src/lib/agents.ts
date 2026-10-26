@@ -1,16 +1,11 @@
 import { PENDING, PRODUCTS } from "@/lib/catalogue";
-
-export const SITE = "https://grosspoetry.systems";
-const NAME = "Gross Poetry Systems";
-const TAGLINE = "Control surfaces for uncertain machines.";
-const ABOUT =
-  "Rigorous engineering and design for the probabilistic magic of intelligent systems.";
+import { NAME, SITE, TAGLINE } from "@/lib/share";
 
 export const llmsTxt = () =>
   [
     `# ${NAME}`,
     "",
-    `> ${TAGLINE} ${ABOUT}`,
+    `> ${TAGLINE}`,
     "",
     "A small catalogue of open-source tools for working with agents. Each project publishes its own documentation; follow its llms.txt for the full corpus.",
     "",
@@ -97,7 +92,8 @@ export const jsonLd = (dateModified: string) => {
         "@id": `${SITE}/#site`,
         url: SITE,
         name: NAME,
-        description: `${TAGLINE} ${ABOUT}`,
+        description: TAGLINE,
+        image: `${SITE}/og.png`,
         publisher: { "@id": org["@id"] },
         dateModified,
       },

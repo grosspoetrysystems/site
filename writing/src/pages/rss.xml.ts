@@ -1,13 +1,14 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 
+import { NAME, TAGLINE } from "../../../src/lib/share";
 import { publishedPosts } from "../lib/posts";
 
 export const GET = async (context: APIContext) => {
   const posts = await publishedPosts();
   return rss({
-    title: "Gross Poetry Systems · Writing",
-    description: "Notes from Gross Poetry Systems.",
+    title: `${NAME} · Writing`,
+    description: TAGLINE,
     site: new URL(import.meta.env.BASE_URL, context.site),
     items: posts.map((post) => ({
       title: post.data.title,

@@ -8,14 +8,13 @@ import {
 import type { ReactNode } from "react";
 
 import { MarkSprite } from "@/components/mark";
-import { jsonLd, SITE } from "@/lib/agents";
+import { jsonLd } from "@/lib/agents";
 import { PALETTE_STORAGE_KEY, PALETTES } from "@/lib/palette";
+import { shareMeta } from "@/lib/share";
 
 import appCss from "@/styles.css?url";
 
-const TITLE = "Gross Poetry Systems";
-const DESCRIPTION =
-  "Control surfaces for uncertain machines. Small, open-source tools for agent-era work.";
+const SHARE = shareMeta({ path: "/" });
 
 // Prerendered at build, so this is the date the deployed page was last generated.
 const BUILT = new Date().toISOString().slice(0, 10);
@@ -41,14 +40,11 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: TITLE },
-      { name: "description", content: DESCRIPTION },
-      { property: "og:title", content: TITLE },
-      { property: "og:description", content: DESCRIPTION },
-      { property: "og:url", content: SITE },
+      { title: SHARE.title },
+      ...SHARE.meta,
     ],
     links: [
-      { rel: "canonical", href: `${SITE}/` },
+      { rel: "canonical", href: SHARE.url },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
