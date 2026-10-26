@@ -50,10 +50,10 @@ export const PalettePicker = () => {
         </svg>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Positioner align="end" side="right" sideOffset={10}>
+        <Popover.Positioner align="center" side="right" sideOffset={10}>
           <Popover.Popup
             aria-label="Change colours"
-            className="border-foreground bg-background ease-drawer border p-2 transition-opacity duration-500 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
+            className="border-foreground bg-background ease-drawer rounded-full border p-2 transition-opacity duration-500 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
           >
             <RadioGroup
               aria-label="Colours"
