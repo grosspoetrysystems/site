@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export const LINK =
+const LINK =
   "border-current border-b no-underline hover:bg-foreground hover:text-background";
 
 export const ExternalLink = ({

@@ -1,0 +1,19 @@
+{
+  "name": "pages",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource/archivo": "^5.3.0",
+    "@fontsource/courier-prime": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.0",
+    "satori": "^0.62.0"
+  }
+}

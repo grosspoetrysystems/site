@@ -10,7 +10,10 @@ const config: KnipConfig = {
       // Imported from src/styles.css, which knip does not follow.
       ignoreDependencies: ["tailwindcss", "tw-animate-css", "shadcn"],
     },
-    writing: {},
+    // Font files are read by path in the share-card endpoint.
+    pages: {
+      ignoreDependencies: ["@fontsource/archivo", "@fontsource/courier-prime"],
+    },
   },
 };
 

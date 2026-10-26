@@ -1,8 +1,9 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { render } from "astro:content";
-import Base from "../layouts/base.astro";
-import { isoDate, publishedPosts } from "../lib/posts";
+
+import Page from "../../layouts/page.astro";
+import { isoDate, publishedPosts } from "../../lib/posts";
 
 export const getStaticPaths = (async () => {
   const posts = await publishedPosts();
@@ -13,10 +14,15 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Base title={post.data.title} description={post.data.description} published={post.data.date}>
-  <article>
+<Page
+  title={post.data.title}
+  description={post.data.description}
+  published={post.data.date}
+  image={`/og/writing/${post.id}.png`}
+>
+  <article class="prose">
     <h1>{post.data.title}</h1>
-    <p><time datetime={isoDate(post.data.date)}>{isoDate(post.data.date)}</time></p>
+    <p><time class="font-mono text-xs" datetime={isoDate(post.data.date)}>{isoDate(post.data.date)}</time></p>
     <Content />
   </article>
-</Base>
+</Page>

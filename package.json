@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm tokens && pnpm --filter writing build && vite build",
+    "build": "pnpm tokens && pnpm --filter pages build && vite build",
     "cf-typegen": "wrangler types",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm knip",
     "deploy": "pnpm build && env -u CF_API_TOKEN -u CF_ACCOUNT_ID wrangler deploy",
-    "dev": "pnpm tokens && pnpm --filter writing build && vite dev",
+    "dev": "pnpm tokens && pnpm --filter pages build && vite dev",
     "fix": "pnpm tokens && ultracite fix",
     "knip": "knip",
     "lint": "pnpm tokens && ultracite check",
@@ -15,8 +15,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "tokens": "tz build",
-    "typecheck": "pnpm tokens && tsc --noEmit && pnpm --filter writing exec astro sync && tsc --noEmit -p writing",
-    "writing": "pnpm tokens && pnpm --filter writing dev"
+    "typecheck": "pnpm tokens && tsc --noEmit && pnpm --filter pages exec astro sync && tsc --noEmit -p pages",
+    "pages": "pnpm tokens && pnpm --filter pages dev"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

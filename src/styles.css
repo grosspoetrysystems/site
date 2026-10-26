@@ -104,6 +104,13 @@
   --radius-xl: var(--radius);
 }
 
+/* Same-origin page loads cross-fade instead of blanking; the shared index and corners hold still. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring;

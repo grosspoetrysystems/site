@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProductRouteImport } from './routes/$product'
 import { Route as CatalogueDotjsonRouteImport } from './routes/catalogue[.]json'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -19,11 +18,6 @@ import { Route as DotwellKnownApiCatalogRouteImport } from './routes/[.]well-kno
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductRoute = ProductRouteImport.update({
-  id: '/$product',
-  path: '/$product',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CatalogueDotjsonRoute = CatalogueDotjsonRouteImport.update({
@@ -49,7 +43,6 @@ const DotwellKnownApiCatalogRoute = DotwellKnownApiCatalogRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/$product': typeof ProductRoute
   '/catalogue.json': typeof CatalogueDotjsonRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -57,7 +50,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$product': typeof ProductRoute
   '/catalogue.json': typeof CatalogueDotjsonRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -66,7 +58,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/$product': typeof ProductRoute
   '/catalogue.json': typeof CatalogueDotjsonRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -76,7 +67,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/$product'
     | '/catalogue.json'
     | '/llms.txt'
     | '/sitemap.xml'
@@ -84,7 +74,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/$product'
     | '/catalogue.json'
     | '/llms.txt'
     | '/sitemap.xml'
@@ -92,7 +81,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/$product'
     | '/catalogue.json'
     | '/llms.txt'
     | '/sitemap.xml'
@@ -101,7 +89,6 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProductRoute: typeof ProductRoute
   CatalogueDotjsonRoute: typeof CatalogueDotjsonRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -115,13 +102,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/$product': {
-      id: '/$product'
-      path: '/$product'
-      fullPath: '/$product'
-      preLoaderRoute: typeof ProductRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/catalogue.json': {
@@ -157,7 +137,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProductRoute: ProductRoute,
   CatalogueDotjsonRoute: CatalogueDotjsonRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

@@ -95,6 +95,6 @@ const Home = () => (
 );
 
 export const Route = createFileRoute("/")({
-  head: () => routeHead({ path: "/" }),
+  head: () => routeHead({ path: "/", image: "/og/index.png" }),
   component: Home,
 });

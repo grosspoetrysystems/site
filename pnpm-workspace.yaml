@@ -7,4 +7,4 @@ allowBuilds:
 minimumReleaseAge: 10080
 
 packages:
-  - writing
+  - pages

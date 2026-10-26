@@ -1,0 +1,208 @@
+---
+import "../../../src/styles.css";
+import "../styles/prose.css";
+
+import { ClientRouter } from "astro:transitions";
+
+import { GRID_PATHS } from "../../../src/components/mark-grid";
+import { PRODUCTS } from "../../../src/lib/catalogue";
+import { PALETTE_STORAGE_KEY, PALETTES } from "../../../src/lib/palette";
+import { shareMeta } from "../../../src/lib/share";
+import { LINK } from "../lib/link";
+
+interface Props {
+  title: string;
+  description?: string;
+  published?: Date;
+  image: string;
+}
+
+const { title, description, published, image } = Astro.props;
+const path = Astro.url.pathname;
+const share = shareMeta({ title, description, path, published, image });
+const restorePalette = `try{var p=localStorage.getItem(${JSON.stringify(PALETTE_STORAGE_KEY)});if(${JSON.stringify(PALETTES)}.indexOf(p)>-1)document.documentElement.dataset.palette=p}catch(e){}`;
+const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), { href: "/writing/", label: "Writing" }];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{share.title}</title>
+    {share.meta.map((m) => ("name" in m ? <meta name={m.name} content={m.content} /> : <meta property={m.property} content={m.content} />))}
+    <link rel="canonical" href={share.url} />
+    <link rel="alternate" type="application/rss+xml" title="Writing" href="/writing/rss.xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Courier+Prime:wght@400;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap"
+    />
+    <script is:inline set:html={restorePalette} />
+    <ClientRouter />
+  </head>
+  <body>
+    <svg aria-hidden="true" class="absolute" height="0" width="0">
+      <defs>
+        <clipPath id="gps-mark-clip"><rect height="112" width="112" x="4" y="4" /></clipPath>
+        <symbol id="gps-mark" viewBox="0 0 120 120">
+          <rect fill="var(--gps-color-ground)" height="112" width="112" x="4" y="4" />
+          <g clip-path="url(#gps-mark-clip)">
+            <path d={GRID_PATHS.join(" ")} fill="none" stroke="var(--gps-color-ink)" stroke-linecap="round" stroke-width="2.6" />
+            <g fill="var(--gps-color-ground)" stroke="var(--gps-color-ground)" stroke-linejoin="round" stroke-width="6.24">
+              <circle cx="30" cy="60" r="13" /><rect height="26" width="26" x="47" y="47" /><path d="M 90,46 L 104,73 L 76,73 Z" />
+            </g>
+            <line stroke="var(--gps-color-ink)" stroke-linecap="round" stroke-width="2.99" x1="30" x2="90" y1="60" y2="60" />
+            <g fill="var(--gps-color-ink)">
+              <circle cx="30" cy="60" r="13" /><rect height="26" width="26" x="47" y="47" /><path d="M 90,46 L 104,73 L 76,73 Z" />
+            </g>
+          </g>
+          <rect fill="none" height="112" stroke="var(--gps-color-ink)" stroke-width="2.6" width="112" x="4" y="4" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="px-gutter font-display flex flex-col gap-8 pt-8 pb-20 text-sm leading-relaxed md:flex-row-reverse md:justify-between">
+      <nav aria-label="Index" class="md:text-right">
+        <ul class="m-0 list-none p-0">
+          {
+            index.map((item) => (
+              <li>
+                {path === item.href ? (
+                  <span aria-current="page">{item.label}</span>
+                ) : (
+                  <a class={LINK} href={item.href}>
+                    {item.label}
+                  </a>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <main class="max-w-lg min-w-0">
+        <slot />
+      </main>
+    </div>
+
+    <footer transition:persist="corners">
+      <div class="left-gutter fixed bottom-4">
+        <div class="relative">
+          <button
+            aria-controls="palette-tray"
+            aria-expanded="false"
+            aria-label="Change colours"
+            class="group block cursor-pointer leading-none opacity-70 transition-opacity hover:opacity-100 aria-expanded:opacity-100"
+            id="palette-trigger"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="ease-drawer transition-transform duration-500 group-aria-expanded:rotate-180 motion-reduce:transition-none"
+              height="22"
+              viewBox="0 0 100 100"
+              width="22"
+            >
+              <circle cx="50" cy="50" fill="var(--gps-color-ink)" r="47" />
+              <path d="M50,3 a47,47 0 1,0 0,94 a23.5,23.5 0 1,1 0,-47 a23.5,23.5 0 1,0 0,-47 z" fill="var(--gps-color-ground)" />
+              <circle cx="50" cy="26.5" fill="var(--gps-color-ink)" r="7" />
+              <circle cx="50" cy="73.5" fill="var(--gps-color-ground)" r="7" />
+            </svg>
+          </button>
+          <fieldset
+            class="border-foreground bg-background ease-drawer pointer-events-none absolute bottom-0 left-full m-0 ml-2.5 flex gap-2 border p-2 opacity-0 transition-opacity duration-500 data-open:pointer-events-auto data-open:opacity-100 motion-reduce:transition-none"
+            id="palette-tray"
+            inert
+          >
+            <legend class="sr-only">Colours</legend>
+            {
+              PALETTES.map((name) => (
+                <label
+                  class="border-foreground bg-ground has-checked:outline-foreground has-focus-visible:outline-foreground block size-6 cursor-pointer rounded-full border has-checked:outline-2 has-checked:outline-offset-2 has-focus-visible:outline-2 has-focus-visible:outline-offset-2"
+                  data-palette={name}
+                  title={name}
+                >
+                  <input aria-label={name} class="sr-only" name="palette" type="radio" value={name} />
+                </label>
+              ))
+            }
+          </fieldset>
+        </div>
+      </div>
+      <a aria-label="Home" class="right-gutter fixed bottom-4" href="/">
+        <svg aria-hidden="true" class="block size-8" viewBox="0 0 120 120"><use href="#gps-mark" /></svg>
+      </a>
+    </footer>
+
+    <script>
+      import { PALETTE_STORAGE_KEY, resolvePalette } from "../../../src/lib/palette";
+
+      const trigger = document.querySelector<HTMLButtonElement>("#palette-trigger");
+      const tray = document.querySelector<HTMLFieldSetElement>("#palette-tray");
+
+      const setOpen = (open: boolean) => {
+        if (!(trigger && tray)) {
+          return;
+        }
+        trigger.setAttribute("aria-expanded", String(open));
+        tray.toggleAttribute("data-open", open);
+        tray.inert = !open;
+        if (open) {
+          const current = resolvePalette(localStorage.getItem(PALETTE_STORAGE_KEY));
+          const radio = tray.querySelector<HTMLInputElement>(`input[value="${current}"]`);
+          if (radio) {
+            radio.checked = true;
+            radio.focus();
+          }
+        }
+      };
+
+      trigger?.addEventListener("click", () => setOpen(trigger.getAttribute("aria-expanded") !== "true"));
+      tray?.addEventListener("change", (event) => {
+        const palette = resolvePalette((event.target as HTMLInputElement).value);
+        document.documentElement.dataset.palette = palette;
+        localStorage.setItem(PALETTE_STORAGE_KEY, palette);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && trigger?.getAttribute("aria-expanded") === "true") {
+          setOpen(false);
+          trigger.focus();
+        }
+      });
+      document.addEventListener("click", (event) => {
+        const target = event.target as Node;
+        if (!(trigger?.contains(target) || tray?.contains(target))) {
+          setOpen(false);
+        }
+      });
+
+      // Pages swap without a reload: carry the palette onto the incoming document before it paints.
+      document.addEventListener("astro:before-swap", (event) => {
+        event.newDocument.documentElement.dataset.palette = resolvePalette(
+          localStorage.getItem(PALETTE_STORAGE_KEY)
+        );
+      });
+
+      document.addEventListener("astro:page-load", () => {
+        for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
+          button.addEventListener("click", async () => {
+            await navigator.clipboard.writeText(button.dataset.copy ?? "");
+            const status = button.nextElementSibling;
+            button.textContent = "copied";
+            if (status) {
+              status.textContent = "Copied to clipboard";
+            }
+            setTimeout(() => {
+              button.textContent = "copy";
+              if (status) {
+                status.textContent = "";
+              }
+            }, 1500);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+---
+import { LINK } from "../lib/link";
+
+const { href } = Astro.props as { href: string };
+---
+
+<a class={LINK} href={href} rel="noopener noreferrer" target="_blank"><slot /><span aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a>

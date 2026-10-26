@@ -99,7 +99,7 @@ export const Wall = () => (
         key={p.id}
         name={p.name}
         picture={p.picture}
-        href={`/${p.id}`}
+        href={`/${p.id}/`}
         summary={p.summary}
       >
         <InstallCommand command={p.install} />

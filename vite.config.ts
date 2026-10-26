@@ -7,6 +7,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   server: { port: 3000 },
   resolve: { tsconfigPaths: true },
+  publicDir: "pages/dist",
   plugins: [
     tailwindcss(),
     cloudflare({ viteEnvironment: { name: "ssr" } }),

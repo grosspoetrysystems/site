@@ -12,5 +12,5 @@ coverage/
 .tanstack/
 worker-configuration.d.ts
 src/tokens.css
-public/writing/
-writing/.astro/
+pages/dist/
+pages/.astro/
