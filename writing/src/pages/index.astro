@@ -6,12 +6,12 @@ const posts = await publishedPosts();
 ---
 
 <Base title="Writing">
-  <h1 class="index-title">Writing</h1>
+  <h1>Writing</h1>
   {
     posts.length === 0 ? (
       <p>Nothing published yet.</p>
     ) : (
-      <ul class="index">
+      <ul>
         {posts.map((post) => (
           <li>
             <a href={`${import.meta.env.BASE_URL}${post.id}/`}>{post.data.title}</a>,{" "}

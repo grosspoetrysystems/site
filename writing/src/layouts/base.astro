@@ -1,4 +1,5 @@
 ---
+import { PRODUCTS } from "../../../src/lib/catalogue";
 import { PALETTE_STORAGE_KEY, PALETTES } from "../../../src/lib/palette";
 import { NAME, shareMeta } from "../../../src/lib/share";
 import "../styles/writing.css";
@@ -33,15 +34,22 @@ const restorePalette = `try{var p=localStorage.getItem(${JSON.stringify(PALETTE_
     <script is:inline set:html={restorePalette} />
   </head>
   <body>
-    <header class="masthead">
-      <a class="wordmark" href="/">Gross Poetry Systems</a>
-      <a class="section" href={import.meta.env.BASE_URL}>Writing</a>
-    </header>
+    <nav aria-label="Site">
+      <ul>
+        <li><a href="/">Gross Poetry Systems</a></li>
+        {PRODUCTS.map((p) => <li><a href={`/${p.id}`}>{p.name}</a></li>)}
+        <li>
+          {Astro.url.pathname === import.meta.env.BASE_URL ? (
+            <span aria-current="page">Writing</span>
+          ) : (
+            <a href={import.meta.env.BASE_URL}>Writing</a>
+          )}
+        </li>
+        <li><a href={`${import.meta.env.BASE_URL}rss.xml`}>RSS</a></li>
+      </ul>
+    </nav>
     <main>
       <slot />
     </main>
-    <footer>
-      <a href="/">grosspoetry.systems</a> · <a href={`${import.meta.env.BASE_URL}rss.xml`}>RSS</a>
-    </footer>
   </body>
 </html>

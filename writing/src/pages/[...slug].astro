@@ -14,11 +14,9 @@ const { Content } = await render(post);
 ---
 
 <Base title={post.data.title} description={post.data.description} published={post.data.date}>
-  <article class="post">
-    <time datetime={isoDate(post.data.date)}>{isoDate(post.data.date)}</time>
-    <h1 class="page-title">{post.data.title}</h1>
-    <div class="prose">
-      <Content />
-    </div>
+  <article>
+    <h1>{post.data.title}</h1>
+    <p><time datetime={isoDate(post.data.date)}>{isoDate(post.data.date)}</time></p>
+    <Content />
   </article>
 </Base>
