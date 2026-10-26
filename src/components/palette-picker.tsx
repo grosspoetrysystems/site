@@ -53,6 +53,7 @@ export const PalettePicker = () => {
         <Popover.Positioner
           align="center"
           className="z-40"
+          positionMethod="fixed"
           side="right"
           sideOffset={-30}
         >

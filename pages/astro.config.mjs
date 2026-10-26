@@ -11,5 +11,9 @@ export default defineConfig({
   integrations: [sitemap()],
   // Code blocks inherit the palette instead of a fixed Shiki theme.
   markdown: { syntaxHighlight: false },
-  vite: { plugins: [tailwindcss()] },
+  // Same names as the home build's assets, so shared fonts are one file and one cache entry.
+  vite: {
+    plugins: [tailwindcss()],
+    build: { rollupOptions: { output: { assetFileNames: "assets/[name]-[hash][extname]" } } },
+  },
 });
