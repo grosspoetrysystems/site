@@ -10,6 +10,14 @@ const SYMBOL_ID = "gps-mark";
 export const MarkSprite = () => (
   <svg aria-hidden="true" className="absolute" height="0" width="0">
     <defs>
+      {/* Stroke width is left to each <use>: the mark and the palette picker draw it at different weights. */}
+      <path
+        d={GRID_PATHS.join(" ")}
+        fill="none"
+        id="gps-grid"
+        stroke="var(--gps-color-ink)"
+        strokeLinecap="round"
+      />
       <clipPath id={`${SYMBOL_ID}-clip`}>
         <rect height="112" width="112" x="4" y="4" />
       </clipPath>
@@ -22,13 +30,7 @@ export const MarkSprite = () => (
           y="4"
         />
         <g clipPath={`url(#${SYMBOL_ID}-clip)`}>
-          <path
-            d={GRID_PATHS.join(" ")}
-            fill="none"
-            stroke="var(--gps-color-ink)"
-            strokeLinecap="round"
-            strokeWidth="2.6"
-          />
+          <use href="#gps-grid" strokeWidth="2.6" />
           <g
             fill="var(--gps-color-ground)"
             stroke="var(--gps-color-ground)"

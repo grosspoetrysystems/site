@@ -40,11 +40,12 @@ const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), {
   <body>
     <svg aria-hidden="true" class="absolute" height="0" width="0">
       <defs>
+        <path d={GRID_PATHS.join(" ")} fill="none" id="gps-grid" stroke="var(--gps-color-ink)" stroke-linecap="round" />
         <clipPath id="gps-mark-clip"><rect height="112" width="112" x="4" y="4" /></clipPath>
         <symbol id="gps-mark" viewBox="0 0 120 120">
           <rect fill="var(--gps-color-ground)" height="112" width="112" x="4" y="4" />
           <g clip-path="url(#gps-mark-clip)">
-            <path d={GRID_PATHS.join(" ")} fill="none" stroke="var(--gps-color-ink)" stroke-linecap="round" stroke-width="2.6" />
+            <use href="#gps-grid" stroke-width="2.6" />
             <g fill="var(--gps-color-ground)" stroke="var(--gps-color-ground)" stroke-linejoin="round" stroke-width="6.24">
               <circle cx="30" cy="60" r="13" /><rect height="26" width="26" x="47" y="47" /><path d="M 90,46 L 104,73 L 76,73 Z" />
             </g>
@@ -88,21 +89,15 @@ const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), {
             aria-controls="palette-tray"
             aria-expanded="false"
             aria-label="Change colours"
-            class="group relative z-10 block cursor-pointer leading-none opacity-70 transition-opacity hover:opacity-100 aria-expanded:opacity-100"
+            class="relative z-10 block cursor-pointer leading-none opacity-70 transition-opacity hover:opacity-100 aria-expanded:opacity-100"
             id="palette-trigger"
             type="button"
           >
-            <svg
-              aria-hidden="true"
-              class="ease-drawer transition-transform duration-500 group-aria-expanded:rotate-180 motion-reduce:transition-none"
-              height="22"
-              viewBox="0 0 100 100"
-              width="22"
-            >
-              <circle cx="50" cy="50" fill="var(--gps-color-ink)" r="47" />
-              <path d="M50,3 a47,47 0 1,0 0,94 a23.5,23.5 0 1,1 0,-47 a23.5,23.5 0 1,0 0,-47 z" fill="var(--gps-color-ground)" />
-              <circle cx="50" cy="26.5" fill="var(--gps-color-ink)" r="7" />
-              <circle cx="50" cy="73.5" fill="var(--gps-color-ground)" r="7" />
+            <svg aria-hidden="true" height="22" viewBox="0 0 120 120" width="22">
+              <clipPath id="palette-icon-clip"><circle cx="60" cy="60" r="56" /></clipPath>
+              <circle cx="60" cy="60" fill="var(--gps-color-ground)" r="56" />
+              <g clip-path="url(#palette-icon-clip)"><use class="palette-grid" href="#gps-grid" stroke-width="5" /></g>
+              <circle cx="60" cy="60" fill="none" r="56" stroke="var(--gps-color-ink)" stroke-width="8" />
             </svg>
           </button>
           <fieldset

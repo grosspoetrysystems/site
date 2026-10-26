@@ -33,20 +33,23 @@ export const PalettePicker = () => {
         aria-label="Change colours"
         className="relative z-50 block cursor-pointer leading-none opacity-70 transition-opacity hover:opacity-100 data-popup-open:opacity-100"
       >
-        <svg
-          aria-hidden="true"
-          className="ease-drawer transition-transform duration-500 in-data-popup-open:rotate-180 motion-reduce:transition-none"
-          height="22"
-          viewBox="0 0 100 100"
-          width="22"
-        >
-          <circle cx="50" cy="50" fill="var(--gps-color-ink)" r="47" />
-          <path
-            d="M50,3 a47,47 0 1,0 0,94 a23.5,23.5 0 1,1 0,-47 a23.5,23.5 0 1,0 0,-47 z"
-            fill="var(--gps-color-ground)"
+        {/* Draws the grid from <MarkSprite>, which the home page always renders. */}
+        <svg aria-hidden="true" height="22" viewBox="0 0 120 120" width="22">
+          <clipPath id="palette-icon-clip">
+            <circle cx="60" cy="60" r="56" />
+          </clipPath>
+          <circle cx="60" cy="60" fill="var(--gps-color-ground)" r="56" />
+          <g clipPath="url(#palette-icon-clip)">
+            <use className="palette-grid" href="#gps-grid" strokeWidth="5" />
+          </g>
+          <circle
+            cx="60"
+            cy="60"
+            fill="none"
+            r="56"
+            stroke="var(--gps-color-ink)"
+            strokeWidth="8"
           />
-          <circle cx="50" cy="26.5" fill="var(--gps-color-ink)" r="7" />
-          <circle cx="50" cy="73.5" fill="var(--gps-color-ground)" r="7" />
         </svg>
       </Popover.Trigger>
       <Popover.Portal>
