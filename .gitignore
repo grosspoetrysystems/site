@@ -1,5 +1,6 @@
 node_modules/
 dist/
+poolboy-dist/
 coverage/
 .env
 .env.*
@@ -14,3 +15,7 @@ worker-configuration.d.ts
 src/tokens.css
 pages/dist/
 pages/.astro/
+.poolboy/*
+!.poolboy/generated.json
+!.poolboy/sources.lock.json
+poolboy.key
