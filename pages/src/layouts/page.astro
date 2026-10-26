@@ -34,12 +34,6 @@ const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), {
     <link rel="canonical" href={share.url} />
     <link rel="alternate" type="application/rss+xml" title="Writing" href="/writing/rss.xml" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Courier+Prime:wght@400;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap"
-    />
     <script is:inline set:html={restorePalette} />
     <ClientRouter />
   </head>
@@ -88,7 +82,7 @@ const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), {
     </div>
 
     <footer transition:persist="corners">
-      <div class="left-gutter fixed bottom-5.25">
+      <div class="left-gutter bg-background fixed bottom-5.25 rounded-full p-1">
         <div class="relative">
           <button
             aria-controls="palette-tray"
@@ -131,7 +125,7 @@ const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), {
           </fieldset>
         </div>
       </div>
-      <a aria-label="Home" class="right-gutter fixed bottom-4" href="/">
+      <a aria-label="Home" class="right-gutter bg-background fixed bottom-4 p-1" href="/">
         <svg aria-hidden="true" class="block size-8" viewBox="0 0 120 120"><use href="#gps-mark" /></svg>
       </a>
     </footer>

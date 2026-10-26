@@ -1,4 +1,14 @@
 /* Markdown output has no classes; Tailwind's preflight strips element defaults, so restore them here. */
+.prose {
+  font-family: var(--gps-font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.prose :is(h1, h2, h3) {
+  font-family: var(--gps-font-display);
+}
+
 .prose :is(h1, h2, h3) {
   font-size: 1rem;
   font-weight: 700;
