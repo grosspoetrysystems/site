@@ -169,3 +169,8 @@ footer {
     scroll-behavior: smooth;
   }
 }
+
+:focus-visible {
+  outline: 2px solid var(--gps-color-ink);
+  outline-offset: 2px;
+}

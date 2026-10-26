@@ -13,12 +13,18 @@ export const InstallCommand = ({ command }: { command: string }) => {
 
   return (
     <div className="divide-foreground border-foreground flex divide-x border">
-      <code className="min-w-0 flex-1 overflow-x-auto px-2.5 py-2 font-mono text-sm whitespace-nowrap">
+      <code className="min-w-0 flex-1 px-2.5 py-2 font-mono text-sm wrap-anywhere">
         {command}
       </code>
-      <Button onClick={copy} size="label" variant="ghost">
+      <Button
+        aria-label={`copy install command: ${command}`}
+        onClick={copy}
+        size="label"
+        variant="ghost"
+      >
         {copied ? "copied" : "copy"}
       </Button>
+      <output className="sr-only">{copied ? "Copied to clipboard" : ""}</output>
     </div>
   );
 };

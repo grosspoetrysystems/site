@@ -5,22 +5,22 @@ import { InstallCommand } from "@/components/install-command";
 import type { Picture } from "@/lib/catalogue";
 import { PENDING, PRODUCTS } from "@/lib/catalogue";
 
-const Source = ({
-  href,
-  arrow,
-  children,
-}: {
-  href?: string;
-  arrow?: boolean;
-  children: ReactNode;
-}) =>
-  href ? (
-    <ExternalLink arrow={arrow} className="no-underline" href={href}>
-      {children}
-    </ExternalLink>
-  ) : (
-    children
-  );
+const Photo = ({ picture, badge }: { picture: Picture; badge: string }) => (
+  <div className="relative">
+    <img
+      alt=""
+      className="wall-photo block h-auto w-full"
+      decoding="async"
+      height={picture.height}
+      loading="lazy"
+      src={`/wall/${picture.slug}.webp`}
+      width={picture.width}
+    />
+    <span className="bg-foreground text-background absolute right-0 bottom-0 px-2.5 py-1.5 font-mono text-xs">
+      {badge}
+    </span>
+  </div>
+);
 
 const Pin = ({
   id,
@@ -49,25 +49,33 @@ const Pin = ({
       } as CSSProperties
     }
   >
-    <Source arrow={false} href={source}>
-      <div className="relative">
-        <img
-          alt={picture.title}
-          className="wall-photo block h-auto w-full"
-          decoding="async"
-          height={picture.height}
-          loading="lazy"
-          src={`/wall/${picture.slug}.webp`}
-          width={picture.width}
-        />
-        <span className="bg-foreground text-background absolute right-0 bottom-0 px-2.5 py-1.5 font-mono text-xs">
-          {badge}
-        </span>
+    {/* The photo repeats the heading's link for pointer users; keyboard and screen readers get the heading. */}
+    {source ? (
+      <a
+        aria-hidden="true"
+        className="no-underline"
+        href={source}
+        rel="noopener noreferrer"
+        tabIndex={-1}
+        target="_blank"
+      >
+        <Photo badge={badge} picture={picture} />
+      </a>
+    ) : (
+      <div aria-hidden="true">
+        <Photo badge={badge} picture={picture} />
       </div>
-    </Source>
+    )}
     <div className="rule-b pt-4 pb-5">
       <h3 className="font-display text-2xl leading-none font-extrabold tracking-tight uppercase">
-        <Source href={source}>{name}</Source>
+        <span className="sr-only">{badge}: </span>
+        {source ? (
+          <ExternalLink className="no-underline" href={source}>
+            {name}
+          </ExternalLink>
+        ) : (
+          name
+        )}
       </h3>
       <p className="mt-2 mb-4">{summary}</p>
       {children}

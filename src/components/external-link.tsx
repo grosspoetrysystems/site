@@ -6,12 +6,10 @@ const LINK =
 export const ExternalLink = ({
   href,
   className = LINK,
-  arrow = true,
   children,
 }: {
   href: string;
   className?: string;
-  arrow?: boolean;
   children: ReactNode;
 }) => (
   <a
@@ -21,7 +19,7 @@ export const ExternalLink = ({
     target="_blank"
   >
     {children}
-    {arrow ? <span aria-hidden="true"> ↗</span> : null}
+    <span aria-hidden="true"> ↗</span>
     <span className="sr-only"> (opens in a new tab)</span>
   </a>
 );

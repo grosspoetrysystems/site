@@ -31,7 +31,7 @@ export const PalettePicker = () => {
     <Popover.Root onOpenChange={syncFromStorage}>
       <Popover.Trigger
         aria-label="Change colours"
-        className="block cursor-pointer leading-none opacity-40 transition-opacity hover:opacity-100 data-popup-open:opacity-100"
+        className="block cursor-pointer leading-none opacity-70 transition-opacity hover:opacity-100 data-popup-open:opacity-100"
       >
         <svg
           aria-hidden="true"
@@ -51,7 +51,10 @@ export const PalettePicker = () => {
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Positioner align="end" side="right" sideOffset={10}>
-          <Popover.Popup className="border-foreground bg-background ease-drawer origin-left border p-2 transition duration-500 data-ending-style:-translate-x-2 data-ending-style:scale-x-0 data-ending-style:opacity-0 data-starting-style:-translate-x-2 data-starting-style:scale-x-0 data-starting-style:opacity-0 motion-reduce:transition-none">
+          <Popover.Popup
+            aria-label="Change colours"
+            className="border-foreground bg-background ease-drawer origin-left border p-2 transition duration-500 data-ending-style:-translate-x-2 data-ending-style:scale-x-0 data-ending-style:opacity-0 data-starting-style:-translate-x-2 data-starting-style:scale-x-0 data-starting-style:opacity-0 motion-reduce:transition-none"
+          >
             <RadioGroup
               aria-label="Colours"
               className="flex gap-2"
