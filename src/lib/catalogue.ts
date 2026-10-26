@@ -26,7 +26,7 @@ export interface Product {
 }
 
 export interface PendingProduct {
-  /** Its Poolboy docs site, once that lands ahead of a release. */
+  /** Its Poolboy docs site, once that lands ahead of a release. Linked beside source; only released products get a page. */
   docs?: string;
   id: string;
   kind: string;

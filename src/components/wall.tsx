@@ -126,7 +126,6 @@ export const Wall = () => (
         key={p.id}
         name={p.name}
         picture={p.picture}
-        href={p.docs ?? p.source}
         summary={p.summary}
       >
         <div className="label">
