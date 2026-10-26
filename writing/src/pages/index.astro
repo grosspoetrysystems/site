@@ -6,22 +6,19 @@ const posts = await publishedPosts();
 ---
 
 <Base title="Writing">
-  <h1 class="page-title">Writing</h1>
+  <h1 class="index-title">Writing</h1>
   {
     posts.length === 0 ? (
-      <p class="empty">Nothing published yet.</p>
+      <p>Nothing published yet.</p>
     ) : (
-      <ol class="index">
+      <ul class="index">
         {posts.map((post) => (
           <li>
-            <a href={`${import.meta.env.BASE_URL}${post.id}/`}>
-              <time datetime={isoDate(post.data.date)}>{isoDate(post.data.date)}</time>
-              <span class="title">{post.data.title}</span>
-              {post.data.description && <span class="description">{post.data.description}</span>}
-            </a>
+            <a href={`${import.meta.env.BASE_URL}${post.id}/`}>{post.data.title}</a>,{" "}
+            <time datetime={isoDate(post.data.date)}>{isoDate(post.data.date)}</time>
           </li>
         ))}
-      </ol>
+      </ul>
     )
   }
 </Base>

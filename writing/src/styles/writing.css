@@ -78,37 +78,23 @@ time {
   letter-spacing: 0.08em;
 }
 
+.index-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0 0 1rem;
+}
+
 .index {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  padding-left: 1.25em;
 }
 
-.index a {
-  display: grid;
-  gap: 0.25rem;
-  padding-block: 1.25rem;
-  border-top: 1px solid currentColor;
-  text-decoration: none;
-}
-
-.index .title {
-  font-family: var(--gps-font-display);
-  font-weight: 600;
-  font-size: 1.375rem;
-  line-height: 1.2;
-}
-
-.index a:hover .title,
-.index a:focus-visible .title {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-}
-
-.index .description,
-.empty {
-  font-size: 1.0625rem;
-  line-height: 1.5;
+.index time {
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: normal;
 }
 
 .post time {
