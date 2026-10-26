@@ -196,6 +196,22 @@
   }
 }
 
+/* The palette tray unrolls out of the yin yang. Base UI marks entry with data-starting-style;
+   the static pages simply toggle data-open. */
+@utility tray-reveal {
+  clip-path: inset(0 0 0 0 round 9999px);
+  transition: clip-path 0.5s var(--gps-motion-ease-drawer);
+
+  &:not([data-open]),
+  &[data-starting-style] {
+    clip-path: inset(0 100% 0 0 round 9999px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
 @utility wall-photo {
   filter: grayscale(1) contrast(1.06);
   mix-blend-mode: var(--blend);

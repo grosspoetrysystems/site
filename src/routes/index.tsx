@@ -88,7 +88,7 @@ const Home = () => (
         <SiteIndex />
       </aside>
     </div>
-    <div className="left-gutter fixed bottom-4">
+    <div className="left-gutter fixed bottom-4 z-50">
       <PalettePicker />
     </div>
   </>

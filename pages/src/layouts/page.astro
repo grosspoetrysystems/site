@@ -94,7 +94,7 @@ const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), {
             aria-controls="palette-tray"
             aria-expanded="false"
             aria-label="Change colours"
-            class="group block cursor-pointer leading-none opacity-70 transition-opacity hover:opacity-100 aria-expanded:opacity-100"
+            class="group relative z-10 block cursor-pointer leading-none opacity-70 transition-opacity hover:opacity-100 aria-expanded:opacity-100"
             id="palette-trigger"
             type="button"
           >
@@ -112,7 +112,7 @@ const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), {
             </svg>
           </button>
           <fieldset
-            class="border-foreground bg-background ease-drawer pointer-events-none absolute top-1/2 left-full m-0 ml-2.5 flex -translate-y-1/2 gap-2 rounded-full border p-2 opacity-0 transition-opacity duration-500 data-open:pointer-events-auto data-open:opacity-100 motion-reduce:transition-none"
+            class="border-foreground bg-background tray-reveal pointer-events-none absolute top-1/2 -left-2 m-0 flex -translate-y-1/2 gap-2 rounded-full border py-2 pr-2 pl-10 data-open:pointer-events-auto"
             id="palette-tray"
             inert
           >
