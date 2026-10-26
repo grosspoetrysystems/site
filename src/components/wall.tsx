@@ -5,22 +5,27 @@ import { InstallCommand } from "@/components/install-command";
 import type { Picture } from "@/lib/catalogue";
 import { PENDING, PRODUCTS } from "@/lib/catalogue";
 
-const Photo = ({ picture, badge }: { picture: Picture; badge: string }) => (
-  <div className="relative">
-    <img
-      alt=""
-      className="wall-photo block h-auto w-full"
-      decoding="async"
-      height={picture.height}
-      loading="lazy"
-      src={`/wall/${picture.slug}.webp`}
-      width={picture.width}
-    />
-    <span className="bg-foreground text-background absolute right-0 bottom-0 px-2.5 py-1.5 font-mono text-xs">
-      {badge}
-    </span>
-  </div>
-);
+// The first photo is in the opening viewport (the LCP on phones); the rest load as they scroll in.
+const Photo = ({ picture, badge }: { picture: Picture; badge: string }) => {
+  const lead = picture === PRODUCTS[0]?.picture;
+  return (
+    <div className="relative">
+      <img
+        alt=""
+        className="wall-photo block h-auto w-full"
+        decoding="async"
+        fetchPriority={lead ? "high" : undefined}
+        height={picture.height}
+        loading={lead ? "eager" : "lazy"}
+        src={`/wall/${picture.slug}.webp`}
+        width={picture.width}
+      />
+      <span className="bg-foreground text-background absolute right-0 bottom-0 px-2.5 py-1.5 font-mono text-xs">
+        {badge}
+      </span>
+    </div>
+  );
+};
 
 const Pin = ({
   id,
