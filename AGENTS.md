@@ -5,7 +5,7 @@ Studio site for Gross Poetry Systems. TanStack Start on a Cloudflare Worker, wit
 ## Commands
 
 - `pnpm install`
-- `pnpm dev`: site at http://localhost:4180 (tokens rebuilt first)
+- `pnpm dev`: site at http://localhost:3000 (tokens rebuilt first)
 - `pnpm writing`: Writing on its own dev server
 - `pnpm check`: lint, typecheck (site and Writing), tests, Knip. Must pass before any commit.
 - `pnpm build`: Writing, then the site, prerendering `/` and Writing
