@@ -122,6 +122,7 @@ export const Wall = () => (
     {PENDING.map((p) => (
       <Pin
         badge="Pending"
+        href={`/${p.id}/`}
         id={p.id}
         key={p.id}
         name={p.name}

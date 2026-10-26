@@ -23,11 +23,13 @@ export const llmsTxt = () =>
     "",
     "## In the works",
     "",
-    ...PENDING.map((p) =>
-      p.source
-        ? `- [${p.name}](${p.source}): ${p.summary}`
-        : `- ${p.name}: ${p.summary}`
-    ),
+    ...PENDING.map((p) => {
+      const refs = [
+        p.docs && `docs: ${p.docs}`,
+        p.source && `source: ${p.source}`,
+      ].filter(Boolean);
+      return `- [${p.name}](${SITE}/${p.id}/): ${p.summary} (${p.kind}${refs.length > 0 ? `; ${refs.join("; ")}` : ""})`;
+    }),
     "",
     "## Contact",
     "",
@@ -61,9 +63,11 @@ export const catalogueJson = () => ({
   })),
   pending: PENDING.map((p) => ({
     id: p.id,
+    url: `${SITE}/${p.id}/`,
     name: p.name,
     kind: p.kind,
     summary: p.summary,
+    docs: p.docs ?? null,
     source: p.source ?? null,
   })),
 });

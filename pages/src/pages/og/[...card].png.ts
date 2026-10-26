@@ -6,7 +6,7 @@ import type { APIRoute } from "astro";
 import satori from "satori";
 
 import { GRID_PATHS } from "../../../../src/components/mark-grid";
-import { PRODUCTS } from "../../../../src/lib/catalogue";
+import { PENDING, PRODUCTS } from "../../../../src/lib/catalogue";
 import { isoDate, publishedPosts } from "../../lib/posts";
 
 const GROUND = "#2634c9";
@@ -36,6 +36,14 @@ export const getStaticPaths = async () => {
       card: p.id,
       props: {
         label: `${p.number} · ${p.kind}`,
+        title: p.name,
+        footer: "Gross Poetry Systems",
+      },
+    })),
+    ...PENDING.map((p) => ({
+      card: p.id,
+      props: {
+        label: `Pending · ${p.kind}`,
         title: p.name,
         footer: "Gross Poetry Systems",
       },

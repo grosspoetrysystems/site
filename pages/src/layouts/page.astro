@@ -5,7 +5,7 @@ import "../styles/prose.css";
 import { ClientRouter } from "astro:transitions";
 
 import { GRID_PATHS } from "../../../src/components/mark-grid";
-import { PRODUCTS } from "../../../src/lib/catalogue";
+import { PENDING, PRODUCTS } from "../../../src/lib/catalogue";
 import { PALETTE_STORAGE_KEY, PALETTES } from "../../../src/lib/palette";
 import { shareMeta } from "../../../src/lib/share";
 import { LINK } from "../lib/link";
@@ -21,7 +21,7 @@ const { title, description, published, image } = Astro.props;
 const path = Astro.url.pathname;
 const share = shareMeta({ title, description, path, published, image });
 const restorePalette = `try{var p=localStorage.getItem(${JSON.stringify(PALETTE_STORAGE_KEY)});if(${JSON.stringify(PALETTES)}.indexOf(p)>-1)document.documentElement.dataset.palette=p}catch(e){}`;
-const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), { href: "/writing/", label: "Writing" }];
+const index = [...[...PRODUCTS, ...PENDING].map((p) => ({ href: `/${p.id}/`, label: p.name })), { href: "/writing/", label: "Writing" }];
 ---
 
 <!doctype html>
