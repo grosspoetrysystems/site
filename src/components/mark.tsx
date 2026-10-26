@@ -69,24 +69,8 @@ export const MarkSprite = () => (
 );
 
 /** Needs <MarkSprite> on the page. */
-export const Mark = ({
-  size = 72,
-  label,
-  className,
-}: {
-  size?: number;
-  label?: string;
-  className?: string;
-}) => (
-  <svg
-    aria-hidden={label ? undefined : true}
-    aria-label={label}
-    className={className}
-    height={size}
-    role={label ? "img" : undefined}
-    viewBox="0 0 120 120"
-    width={size}
-  >
+export const Mark = ({ className }: { className: string }) => (
+  <svg aria-hidden="true" className={className} viewBox="0 0 120 120">
     <use href={`#${SYMBOL_ID}`} />
   </svg>
 );
