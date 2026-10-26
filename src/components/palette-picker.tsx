@@ -33,7 +33,13 @@ export const PalettePicker = () => {
         aria-label="Change colours"
         className="block cursor-pointer leading-none opacity-40 transition-opacity hover:opacity-100 data-popup-open:opacity-100"
       >
-        <svg aria-hidden="true" height="22" viewBox="0 0 100 100" width="22">
+        <svg
+          aria-hidden="true"
+          className="ease-drawer transition-transform duration-500 in-data-popup-open:rotate-180 motion-reduce:transition-none"
+          height="22"
+          viewBox="0 0 100 100"
+          width="22"
+        >
           <circle cx="50" cy="50" fill="var(--gps-color-ink)" r="47" />
           <path
             d="M50,3 a47,47 0 1,0 0,94 a23.5,23.5 0 1,1 0,-47 a23.5,23.5 0 1,0 0,-47 z"
