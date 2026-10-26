@@ -8,7 +8,6 @@ import { PENDING, PRODUCTS } from "@/lib/catalogue";
 const LINK =
   "border-current border-b no-underline hover:bg-foreground hover:text-background";
 
-/** Wraps content in a link to the project's repository when it has a public one. */
 const Source = ({ href, children }: { href?: string; children: ReactNode }) =>
   href ? (
     <a className="no-underline" href={href}>
@@ -81,7 +80,6 @@ const Pin = ({
   </article>
 );
 
-/** The catalogue as a wall: one photo per project, monochrome until hovered. */
 export const Wall = () => (
   <div className="px-gutter pb-12">
     {PRODUCTS.map((p) => (

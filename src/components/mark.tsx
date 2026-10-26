@@ -68,7 +68,7 @@ export const MarkSprite = () => (
   </svg>
 );
 
-/** The GPS mark: circle, square, triangle on a warped grid. Needs <MarkSprite> on the page. */
+/** Needs <MarkSprite> on the page. */
 export const Mark = ({
   size = 72,
   label,

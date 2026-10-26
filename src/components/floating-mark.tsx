@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 
 import { Mark } from "@/components/mark";
 
-/** Desktop only: the mark slides in at top left once the masthead has scrolled away. */
 export const FloatingMark = () => {
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    // The masthead row: wordmark plus the big mark beside it.
     const masthead = document.querySelector("#masthead")?.parentElement;
     if (!masthead) {
       return;

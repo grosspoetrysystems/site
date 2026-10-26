@@ -6,10 +6,6 @@ const TAGLINE = "Control surfaces for uncertain machines.";
 const ABOUT =
   "Rigorous engineering and design for the probabilistic magic of intelligent systems.";
 
-/**
- * The studio's llms.txt: a parent index. Each project publishes its own docs at its own
- * deploy target; this file points agents at them rather than copying them.
- */
 export const llmsTxt = () =>
   [
     `# ${NAME}`,
@@ -51,7 +47,6 @@ export const llmsTxt = () =>
     "",
   ].join("\n");
 
-/** The catalogue as data: what /catalogue.json serves and public/openapi.json describes. */
 export const catalogueJson = () => ({
   name: NAME,
   url: SITE,

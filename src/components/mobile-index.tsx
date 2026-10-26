@@ -3,7 +3,6 @@ import { useCallback, useState } from "react";
 
 import { SiteIndex } from "@/components/site-index";
 
-/** Phone-width top bar; the index opens as a bottom drawer (Base UI, swipe down to dismiss). */
 export const MobileIndex = () => {
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);

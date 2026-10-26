@@ -12,7 +12,6 @@ const SECTIONS = [
   ["Writing", "/writing/"],
 ] as const;
 
-/** Section and product links, shared by the desktop rail and the mobile drawer. */
 export const SiteIndex = ({ onNavigate }: { onNavigate?: () => void }) => (
   <>
     <nav aria-label="Sections" className="px-gutter pb-6">

@@ -10,7 +10,6 @@ const config: KnipConfig = {
       // Imported from src/styles.css, which knip does not follow.
       ignoreDependencies: ["tailwindcss", "tw-animate-css", "shadcn"],
     },
-    // Writing (Astro): the Astro plugin finds its pages, config and content config.
     writing: {},
   },
 };

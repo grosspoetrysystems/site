@@ -1,6 +1,5 @@
 import { getCollection } from "astro:content";
 
-/** Published posts, newest first. Drafts never reach the build output. */
 export const publishedPosts = async () => {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
   return posts.toSorted(

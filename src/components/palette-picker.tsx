@@ -10,7 +10,6 @@ import {
   resolvePalette,
 } from "@/lib/palette";
 
-/** The studio's palette switcher: a GPS design-system component built on Base UI primitives. */
 export const PalettePicker = () => {
   const [current, setCurrent] = useState(DEFAULT_PALETTE);
 

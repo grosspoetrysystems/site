@@ -17,7 +17,6 @@ export interface Product {
   kind: string;
   license: string;
   links: readonly { label: string; href: string }[];
-  /** The project's own llms.txt, at its deploy target. */
   llms?: string;
   name: string;
   number: string;
