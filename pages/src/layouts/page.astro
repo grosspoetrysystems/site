@@ -69,7 +69,7 @@ const index = [...PRODUCTS.map((p) => ({ href: `/${p.id}/`, label: p.name })), {
         <ul class="m-0 list-none p-0">
           {
             index.map((item) => (
-              <li>
+              <li class:list={[{ "mt-3": item.href === "/writing/" }]}>
                 {path === item.href ? (
                   <span aria-current="page">{item.label}</span>
                 ) : (
