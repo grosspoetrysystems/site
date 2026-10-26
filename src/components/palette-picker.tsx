@@ -51,7 +51,7 @@ export const PalettePicker = () => {
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Positioner align="end" side="right" sideOffset={10}>
-          <Popover.Popup className="border-foreground bg-background border p-2">
+          <Popover.Popup className="border-foreground bg-background ease-drawer origin-left border p-2 transition duration-500 data-ending-style:-translate-x-2 data-ending-style:scale-x-0 data-ending-style:opacity-0 data-starting-style:-translate-x-2 data-starting-style:scale-x-0 data-starting-style:opacity-0 motion-reduce:transition-none">
             <RadioGroup
               aria-label="Colours"
               className="flex gap-2"
