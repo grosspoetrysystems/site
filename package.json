@@ -6,7 +6,7 @@
     "build": "pnpm tokens && pnpm --filter pages build && vite build",
     "cf-typegen": "wrangler types",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm knip",
-    "deploy": "pnpm build && env -u CF_API_TOKEN -u CF_ACCOUNT_ID wrangler deploy",
+    "deploy": "node scripts/unlinked-docs.ts && pnpm build && env -u CF_API_TOKEN -u CF_ACCOUNT_ID wrangler deploy",
     "dev": "pnpm tokens && pnpm --filter pages build && vite dev",
     "fix": "pnpm tokens && ultracite fix",
     "knip": "knip",
