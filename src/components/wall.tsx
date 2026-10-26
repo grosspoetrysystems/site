@@ -1,17 +1,23 @@
 import type { CSSProperties, ReactNode } from "react";
 
+import { ExternalLink } from "@/components/external-link";
 import { InstallCommand } from "@/components/install-command";
 import type { Picture } from "@/lib/catalogue";
 import { PENDING, PRODUCTS } from "@/lib/catalogue";
 
-const LINK =
-  "border-current border-b no-underline hover:bg-foreground hover:text-background";
-
-const Source = ({ href, children }: { href?: string; children: ReactNode }) =>
+const Source = ({
+  href,
+  arrow,
+  children,
+}: {
+  href?: string;
+  arrow?: boolean;
+  children: ReactNode;
+}) =>
   href ? (
-    <a className="no-underline" href={href}>
+    <ExternalLink arrow={arrow} className="no-underline" href={href}>
       {children}
-    </a>
+    </ExternalLink>
   ) : (
     children
   );
@@ -43,7 +49,7 @@ const Pin = ({
       } as CSSProperties
     }
   >
-    <Source href={source}>
+    <Source arrow={false} href={source}>
       <div className="relative">
         <img
           alt={picture.title}
@@ -87,9 +93,7 @@ export const Wall = () => (
           {p.links.map((l) => (
             <span key={l.href}>
               {" · "}
-              <a className={LINK} href={l.href}>
-                {l.label}
-              </a>
+              <ExternalLink href={l.href}>{l.label}</ExternalLink>
             </span>
           ))}
         </div>
@@ -110,9 +114,7 @@ export const Wall = () => (
           {p.source ? (
             <>
               {" · "}
-              <a className={LINK} href={p.source}>
-                source
-              </a>
+              <ExternalLink href={p.source}>source</ExternalLink>
             </>
           ) : null}
         </div>

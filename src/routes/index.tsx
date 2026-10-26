@@ -1,15 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+import { ExternalLink } from "@/components/external-link";
 import { FloatingMark } from "@/components/floating-mark";
 import { Mark } from "@/components/mark";
 import { MobileIndex } from "@/components/mobile-index";
 import { PalettePicker } from "@/components/palette-picker";
 import { SiteIndex } from "@/components/site-index";
 import { Wall } from "@/components/wall";
-
-const LINK =
-  "border-current border-b no-underline hover:bg-foreground hover:text-background";
 
 const Section = ({
   id,
@@ -78,9 +76,9 @@ const Home = () => (
 
         <footer className="rule-t px-gutter pt-6 pb-20 font-mono text-xs">
           grosspoetry.systems ·{" "}
-          <a className={LINK} href="https://github.com/grosspoetrysystems">
+          <ExternalLink href="https://github.com/grosspoetrysystems">
             github.com/grosspoetrysystems
-          </a>{" "}
+          </ExternalLink>{" "}
           · Profoundly unfashionable since 2026
         </footer>
       </main>
