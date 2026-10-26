@@ -14,6 +14,10 @@ export default defineConfig({
   // Same names as the home build's assets, so shared fonts are one file and one cache entry.
   vite: {
     plugins: [tailwindcss()],
-    build: { rollupOptions: { output: { assetFileNames: "assets/[name]-[hash][extname]" } } },
+    build: {
+      rollupOptions: {
+        output: { assetFileNames: "assets/[name]-[hash][extname]" },
+      },
+    },
   },
 });
