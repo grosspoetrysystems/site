@@ -12,7 +12,8 @@ const live = async (url: string) => {
 };
 
 const homes = [...PRODUCTS, ...PENDING]
-  .filter((p) => !("graph" in p && p.graph))
+  // Released products link a docs graph; pending ones only a docs site.
+  .filter((p) => !("number" in p ? p.graph : p.docs))
   .flatMap((p) => {
     const docs =
       "links" in p ? p.links.find((l) => l.label === "docs")?.href : undefined;

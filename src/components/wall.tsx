@@ -126,11 +126,17 @@ export const Wall = () => (
         key={p.id}
         name={p.name}
         picture={p.picture}
-        href={p.source}
+        href={p.docs ?? p.source}
         summary={p.summary}
       >
         <div className="label">
           {p.kind}
+          {p.docs ? (
+            <>
+              {" · "}
+              <ExternalLink href={p.docs}>docs</ExternalLink>
+            </>
+          ) : null}
           {p.source ? (
             <>
               {" · "}
