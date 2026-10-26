@@ -96,7 +96,8 @@ pre {
 }
 
 pre {
-  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   padding: 0.75rem;
   border: 1px solid currentColor;
 }
