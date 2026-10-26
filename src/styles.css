@@ -204,8 +204,6 @@
   }
 }
 
-/* The palette tray unrolls out of the yin yang. Base UI marks entry with data-starting-style;
-   the static pages simply toggle data-open. */
 /* The picker's grid turns and zooms inside its ring while the tray is open. */
 @utility palette-grid {
   transform-box: view-box;
@@ -221,6 +219,8 @@
   }
 }
 
+/* The palette tray unrolls out of the picker icon. Base UI marks entry with data-starting-style;
+   the static pages simply toggle data-open. */
 @utility tray-reveal {
   clip-path: inset(0 0 0 0 round 9999px);
   transition: clip-path 0.5s var(--gps-motion-ease-drawer);
