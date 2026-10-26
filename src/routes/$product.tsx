@@ -3,6 +3,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ExternalLink, LINK } from "@/components/external-link";
 import { InstallCommand } from "@/components/install-command";
 import { Mark } from "@/components/mark";
+import { PalettePicker } from "@/components/palette-picker";
 import { PRODUCTS } from "@/lib/catalogue";
 import { routeHead } from "@/lib/share";
 
@@ -11,10 +12,6 @@ const ProductPage = () => {
   return (
     <div className="px-gutter font-display flex flex-col gap-8 py-8 text-sm leading-relaxed md:flex-row-reverse md:justify-between">
       <nav aria-label="Catalogue" className="md:text-right">
-        <Link aria-label="Home" className="mb-3 inline-block" to="/">
-          <Mark className="block size-8" />
-        </Link>
-        <br />
         <Link className={LINK} to="/">
           Gross Poetry Systems
         </Link>
@@ -68,6 +65,14 @@ const ProductPage = () => {
           ) : null}
         </ul>
       </main>
+      <footer>
+        <div className="left-gutter fixed bottom-4">
+          <PalettePicker />
+        </div>
+        <Link aria-label="Home" className="right-gutter fixed bottom-4" to="/">
+          <Mark className="block size-8" />
+        </Link>
+      </footer>
     </div>
   );
 };
