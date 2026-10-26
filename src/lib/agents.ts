@@ -18,7 +18,7 @@ export const llmsTxt = () =>
         ...p.links.map((l) => `${l.label}: ${l.href}`),
         `install: \`${p.install}\``,
       ].filter(Boolean);
-      return `- [${p.name}](${p.links.find((l) => l.label === "source")?.href}): ${p.summary} (${p.number}, ${p.kind}, ${p.version}, ${p.license}; ${refs.join("; ")})`;
+      return `- [${p.name}](${SITE}/${p.id}): ${p.summary} (${p.number}, ${p.kind}, ${p.version}, ${p.license}; ${refs.join("; ")})`;
     }),
     "",
     "## In the works",
@@ -47,6 +47,7 @@ export const catalogueJson = () => ({
   url: SITE,
   products: PRODUCTS.map((p) => ({
     id: p.id,
+    url: `${SITE}/${p.id}`,
     number: p.number,
     name: p.name,
     kind: p.kind,
@@ -66,10 +67,11 @@ export const catalogueJson = () => ({
     source: p.source ?? null,
   })),
 });
+
 export const sitemapXml = (lastmod: string) =>
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${SITE}/</loc><lastmod>${lastmod}</lastmod></url>
+${["", ...PRODUCTS.map((p) => p.id)].map((path) => `  <url><loc>${SITE}/${path}</loc><lastmod>${lastmod}</lastmod></url>`).join("\n")}
 </urlset>
 `;
 
@@ -109,7 +111,7 @@ export const jsonLd = (dateModified: string) => {
             identifier: p.number,
             description: p.summary,
             codeRepository: p.links.find((l) => l.label === "source")?.href,
-            url: p.links.find((l) => l.label === "docs")?.href,
+            url: `${SITE}/${p.id}`,
             license: `https://spdx.org/licenses/${p.license}.html`,
             version: p.version.replace(/^v/u, ""),
             author: { "@id": org["@id"] },

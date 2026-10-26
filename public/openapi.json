@@ -5,7 +5,11 @@
     "version": "1.0.0",
     "description": "Read-only description of the studio catalogue. No authentication; every response is public. Each product points at its own documentation corpus (llms.txt, Poolboy graph.json) at its own deploy target."
   },
-  "servers": [{ "url": "https://grosspoetry.systems" }],
+  "servers": [
+    {
+      "url": "https://grosspoetry.systems"
+    }
+  ],
   "paths": {
     "/catalogue.json": {
       "get": {
@@ -16,7 +20,9 @@
             "description": "The catalogue",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Catalogue" }
+                "schema": {
+                  "$ref": "#/components/schemas/Catalogue"
+                }
               }
             }
           }
@@ -30,7 +36,13 @@
         "responses": {
           "200": {
             "description": "llms.txt",
-            "content": { "text/plain": { "schema": { "type": "string" } } }
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -42,15 +54,24 @@
         "type": "object",
         "required": ["name", "url", "products", "pending"],
         "properties": {
-          "name": { "type": "string" },
-          "url": { "type": "string", "format": "uri" },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
           "products": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/Product" }
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
           },
           "pending": {
             "type": "array",
-            "items": { "$ref": "#/components/schemas/Pending" }
+            "items": {
+              "$ref": "#/components/schemas/Pending"
+            }
           }
         }
       },
@@ -58,6 +79,7 @@
         "type": "object",
         "required": [
           "id",
+          "url",
           "number",
           "name",
           "kind",
@@ -70,21 +92,42 @@
           "graph"
         ],
         "properties": {
-          "id": { "type": "string", "examples": ["poolboy"] },
-          "number": { "type": "string", "examples": ["GPS-0001"] },
-          "name": { "type": "string" },
-          "kind": { "type": "string" },
-          "summary": { "type": "string" },
-          "version": { "type": "string", "examples": ["v0.3.0"] },
+          "id": {
+            "type": "string",
+            "examples": ["poolboy"]
+          },
+          "number": {
+            "type": "string",
+            "examples": ["GPS-0001"]
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string",
+            "examples": ["v0.3.0"]
+          },
           "license": {
             "type": "string",
             "description": "SPDX identifier"
           },
-          "install": { "type": "string", "description": "Shell command" },
+          "install": {
+            "type": "string",
+            "description": "Shell command"
+          },
           "links": {
             "type": "object",
             "description": "Keyed by label, e.g. docs, source",
-            "additionalProperties": { "type": "string", "format": "uri" }
+            "additionalProperties": {
+              "type": "string",
+              "format": "uri"
+            }
           },
           "llms": {
             "type": ["string", "null"],
@@ -95,6 +138,11 @@
             "type": ["string", "null"],
             "format": "uri",
             "description": "The project's Poolboy corpus manifest"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "The product page on grosspoetry.systems"
           }
         }
       },
@@ -102,11 +150,22 @@
         "type": "object",
         "required": ["id", "name", "kind", "summary", "source"],
         "properties": {
-          "id": { "type": "string" },
-          "name": { "type": "string" },
-          "kind": { "type": "string" },
-          "summary": { "type": "string" },
-          "source": { "type": ["string", "null"], "format": "uri" }
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "source": {
+            "type": ["string", "null"],
+            "format": "uri"
+          }
         }
       }
     }

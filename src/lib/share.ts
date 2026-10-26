@@ -57,3 +57,12 @@ export const shareMeta = ({
   }
   return { title: fullTitle, url, meta };
 };
+
+/** `shareMeta` in the shape TanStack route `head` expects. */
+export const routeHead = (page: Parameters<typeof shareMeta>[0]) => {
+  const { title, url, meta } = shareMeta(page);
+  return {
+    meta: [{ title }, ...meta],
+    links: [{ rel: "canonical", href: url }],
+  };
+};

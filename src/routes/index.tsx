@@ -8,6 +8,7 @@ import { MobileIndex } from "@/components/mobile-index";
 import { PalettePicker } from "@/components/palette-picker";
 import { SiteIndex } from "@/components/site-index";
 import { Wall } from "@/components/wall";
+import { routeHead } from "@/lib/share";
 
 const Section = ({
   id,
@@ -93,4 +94,7 @@ const Home = () => (
   </>
 );
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+  head: () => routeHead({ path: "/" }),
+  component: Home,
+});

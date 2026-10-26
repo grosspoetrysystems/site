@@ -28,7 +28,7 @@ const Pin = ({
   name,
   picture,
   summary,
-  source,
+  href,
   children,
 }: {
   id: string;
@@ -36,52 +36,59 @@ const Pin = ({
   name: string;
   picture: Picture;
   summary: string;
-  source?: string;
+  href?: string;
   children: ReactNode;
-}) => (
-  <article
-    className="wall-pin group"
-    id={id}
-    style={
-      {
-        "--span": `${picture.span}%`,
-        "--offset": `${picture.offset}%`,
-      } as CSSProperties
-    }
-  >
-    {/* The photo repeats the heading's link for pointer users; keyboard and screen readers get the heading. */}
-    {source ? (
-      <a
-        aria-hidden="true"
-        className="no-underline"
-        href={source}
-        rel="noopener noreferrer"
-        tabIndex={-1}
-        target="_blank"
-      >
-        <Photo badge={badge} picture={picture} />
-      </a>
-    ) : (
-      <div aria-hidden="true">
-        <Photo badge={badge} picture={picture} />
+}) => {
+  const external = href !== undefined && !href.startsWith("/");
+  return (
+    <article
+      className="wall-pin group"
+      id={id}
+      style={
+        {
+          "--span": `${picture.span}%`,
+          "--offset": `${picture.offset}%`,
+        } as CSSProperties
+      }
+    >
+      {/* The photo repeats the heading's link for pointer users; keyboard and screen readers get the heading. */}
+      {href ? (
+        <a
+          aria-hidden="true"
+          className="no-underline"
+          href={href}
+          rel={external ? "noopener noreferrer" : undefined}
+          tabIndex={-1}
+          target={external ? "_blank" : undefined}
+        >
+          <Photo badge={badge} picture={picture} />
+        </a>
+      ) : (
+        <div aria-hidden="true">
+          <Photo badge={badge} picture={picture} />
+        </div>
+      )}
+      <div className="rule-b pt-4 pb-5">
+        <h3 className="font-display text-2xl leading-none font-extrabold tracking-tight uppercase">
+          <span className="sr-only">{badge}: </span>
+          {href && external ? (
+            <ExternalLink className="no-underline" href={href}>
+              {name}
+            </ExternalLink>
+          ) : null}
+          {href && !external ? (
+            <a className="no-underline" href={href}>
+              {name}
+            </a>
+          ) : null}
+          {href ? null : name}
+        </h3>
+        <p className="mt-2 mb-4">{summary}</p>
+        {children}
       </div>
-    )}
-    <div className="rule-b pt-4 pb-5">
-      <h3 className="font-display text-2xl leading-none font-extrabold tracking-tight uppercase">
-        <span className="sr-only">{badge}: </span>
-        {source ? (
-          <ExternalLink className="no-underline" href={source}>
-            {name}
-          </ExternalLink>
-        ) : (
-          name
-        )}
-      </h3>
-      <p className="mt-2 mb-4">{summary}</p>
-      {children}
-    </div>
-  </article>
-);
+    </article>
+  );
+};
 
 export const Wall = () => (
   <div className="px-gutter pb-12">
@@ -92,7 +99,7 @@ export const Wall = () => (
         key={p.id}
         name={p.name}
         picture={p.picture}
-        source={p.links.find((l) => l.label === "source")?.href}
+        href={`/${p.id}`}
         summary={p.summary}
       >
         <InstallCommand command={p.install} />
@@ -114,7 +121,7 @@ export const Wall = () => (
         key={p.id}
         name={p.name}
         picture={p.picture}
-        source={p.source}
+        href={p.source}
         summary={p.summary}
       >
         <div className="label">
