@@ -11,3 +11,5 @@
 2. Look at what you changed in a browser: phone and desktop widths, more than one palette, keyboard only.
 3. `pnpm check` must pass. The commit hook only lints.
 4. Deploy only when the owner says so, then load the changed pages on grosspoetry.systems.
+
+Contribution governance comes from Helicopter (.github/helicopter/version.json). Use the helicopter skill to update or check it: npx skills add grosspoetrysystems/helicopter
