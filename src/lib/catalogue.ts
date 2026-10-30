@@ -26,6 +26,8 @@ export interface Product {
 }
 
 export interface PendingProduct {
+  /** Its Poolboy docs site, once that lands ahead of a release. Linked beside source; only released products get a page. */
+  docs?: string;
   id: string;
   kind: string;
   name: string;
@@ -35,6 +37,9 @@ export interface PendingProduct {
 }
 
 const repo = (name: string) => `https://github.com/grosspoetrysystems/${name}`;
+/** Where Poolboy publishes a project's docs by default (GitHub Pages). */
+export const pages = (name: string) =>
+  `https://grosspoetrysystems.github.io/${name}/`;
 
 // Released and public. Versions and install commands match the published npm packages.
 export const PRODUCTS: readonly Product[] = [
@@ -46,7 +51,7 @@ export const PRODUCTS: readonly Product[] = [
     summary:
       "Maintain software documentation as portable Markdown, then compile it into a static corpus agents can query.",
     install: "npm install --global @grosspoetrysystems/poolboy",
-    version: "v0.3.0",
+    version: "v0.4.0",
     license: "GPL-3.0-only",
     links: [
       { label: "docs", href: "https://poolboy.sh/docs/" },
@@ -73,7 +78,12 @@ export const PRODUCTS: readonly Product[] = [
     install: "npx skills add grosspoetrysystems/helicopter",
     version: "v0.2.0",
     license: "MIT",
-    links: [{ label: "source", href: repo("helicopter") }],
+    links: [
+      { label: "docs", href: pages("helicopter") },
+      { label: "source", href: repo("helicopter") },
+    ],
+    llms: `${pages("helicopter")}llms.txt`,
+    graph: `${pages("helicopter")}graph.json`,
     picture: {
       slug: "roundabout-fire",
       title: "roundabout on fire",
@@ -139,14 +149,11 @@ export const PRODUCTS: readonly Product[] = [
     version: "v0.1.2",
     license: "MIT",
     links: [
-      {
-        label: "docs",
-        href: "https://grosspoetrysystems.github.io/crooked-pattern/",
-      },
+      { label: "docs", href: pages("crooked-pattern") },
       { label: "source", href: repo("crooked-pattern") },
     ],
-    llms: "https://grosspoetrysystems.github.io/crooked-pattern/llms.txt",
-    graph: "https://grosspoetrysystems.github.io/crooked-pattern/graph.json",
+    llms: `${pages("crooked-pattern")}llms.txt`,
+    graph: `${pages("crooked-pattern")}graph.json`,
     picture: {
       slug: "bargello-eye-wave",
       title: "bargello · eye / wave",

@@ -14,6 +14,11 @@ sources:
   - resource: src/lib/palette.ts
   - resource: src/lib/share.ts
   - resource: src/routes/__root.tsx
+  - resource: pages/src/pages/[product].astro
+  - resource: src/lib/catalogue.ts
+  - resource: src/lib/agents.ts
+  - resource: src/components/wall.tsx
+  - resource: scripts/unlinked-docs.ts
 ---
 
 # Architecture
@@ -26,6 +31,10 @@ The repository is a pnpm workspace with two front ends:
 - **Pages sub-site** — an Astro project in `pages/` (the only workspace package, per `pnpm-workspace.yaml`) that builds product pages, the writing section, OG share cards, and RSS.
 
 The two are stitched together by one line in `vite.config.ts`: `publicDir: "pages/dist"`. The Astro build writes static output to `pages/dist`, and the main Vite build publishes that directory as its public assets. So the Astro-rendered routes (`/<product>/`, `/writing/…`, `/og/….png`) and static files (`robots.txt`, `openapi.json`, `favicon.svg`) are served by the same Worker as the TanStack app.
+
+The shared catalogue in `src/lib/catalogue.ts` is source data, not a second routing layer. The Worker serializers, wall, and Astro page consume the same `PRODUCTS` and `PENDING` arrays, so catalogue URLs remain the source evidence for each project's external documentation.
+
+`pages/src/pages/[product].astro` generates pages for both arrays. Released products render their install command, version, licence, and declared links; pending products render a pending label, summary, and only the optional docs/source links that exist.
 
 Shared constants — `SITE`, `NAME`, `TAGLINE`, and the `shareMeta` helper — live in `src/lib/share.ts`, imported by both apps, so that file stays free of path aliases (see its header comment).
 
@@ -51,3 +60,5 @@ Colour, type, and spacing are defined once in `tokens/gps.tokens.json` (DTCG for
 ## Deploy target
 
 `wrangler.jsonc` binds the Worker to the custom domains `grosspoetry.systems` and `www.grosspoetry.systems` with `nodejs_compat`. Deploys are manual and owner-gated — see [Workflows](workflows.md) and `AGENTS.md`.
+
+`pnpm deploy` first runs `node scripts/unlinked-docs.ts`. The guard checks released products without a `graph` and pending products without `docs`, probing the default Pages URL and any explicit docs URL for a live `graph.json`. A live graph at an unlinked location blocks deployment; network or offline failures do not.

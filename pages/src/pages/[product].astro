@@ -1,53 +1,51 @@
 ---
 import type { GetStaticPaths } from "astro";
 
-import { PRODUCTS } from "../../../src/lib/catalogue";
+import { PENDING, PRODUCTS } from "../../../src/lib/catalogue";
 import ExternalLink from "../components/external-link.astro";
 import Page from "../layouts/page.astro";
 
 export const getStaticPaths = (() =>
-  PRODUCTS.map((p) => ({ params: { product: p.id }, props: { p } }))) satisfies GetStaticPaths;
+  [...PRODUCTS, ...PENDING].map((p) => ({ params: { product: p.id }, props: { p } }))) satisfies GetStaticPaths;
 
 const { p } = Astro.props;
+const released = "number" in p ? p : undefined;
+const links = released
+  ? [...released.links, ...(released.llms ? [{ label: "llms.txt", href: released.llms }] : []), ...(released.graph ? [{ label: "graph.json", href: released.graph }] : [])]
+  : [...("docs" in p && p.docs ? [{ label: "docs", href: p.docs }] : []), ...("source" in p && p.source ? [{ label: "source", href: p.source }] : [])];
 ---
 
 <Page title={p.name} description={p.summary} image={`/og/${p.id}.png`}>
-  <p class="label m-0">{p.number} · {p.kind}</p>
+  <p class="label m-0">{released ? released.number : "Pending"} · {p.kind}</p>
   <h1 class="mt-2 mb-0 text-base font-bold">{p.name}</h1>
   <p class="mt-2 mb-4">{p.summary}</p>
-  <div class="divide-foreground border-foreground flex divide-x border">
-    <code class="min-w-0 flex-1 px-2.5 py-2 font-mono text-sm wrap-anywhere">{p.install}</code>
-    <button
-      aria-label={`copy install command: ${p.install}`}
-      class="label hover:bg-muted cursor-pointer px-3"
-      data-copy={p.install}
-      type="button">copy</button
-    >
-    <output class="sr-only"></output>
-  </div>
-  <ul class="mt-4 list-disc pl-5">
-    <li>{p.version}</li>
-    <li>{p.license}</li>
-    {
-      p.links.map((l) => (
-        <li class="capitalize">
-          <ExternalLink href={l.href}>{l.label}</ExternalLink>
-        </li>
-      ))
-    }
-    {
-      p.llms && (
-        <li>
-          <ExternalLink href={p.llms}>llms.txt</ExternalLink>
-        </li>
-      )
-    }
-    {
-      p.graph && (
-        <li>
-          <ExternalLink href={p.graph}>graph.json</ExternalLink>
-        </li>
-      )
-    }
-  </ul>
+  {
+    released && (
+      <div class="divide-foreground border-foreground flex divide-x border">
+        <code class="min-w-0 flex-1 px-2.5 py-2 font-mono text-sm wrap-anywhere">{released.install}</code>
+        <button
+          aria-label={`copy install command: ${released.install}`}
+          class="label hover:bg-muted cursor-pointer px-3"
+          data-copy={released.install}
+          type="button"
+        >
+          copy
+        </button>
+        <output class="sr-only" />
+      </div>
+    )
+  }
+  {
+    (released || links.length > 0) && (
+      <ul class="mt-4 list-disc pl-5">
+        {released && <li>{released.version}</li>}
+        {released && <li>{released.license}</li>}
+        {links.map((l) => (
+          <li class:list={[{ capitalize: !l.label.includes(".") }]}>
+            <ExternalLink href={l.href}>{l.label}</ExternalLink>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </Page>

@@ -9,4 +9,4 @@ pre-commit:
 commit-msg:
   commands:
     commitlint:
-      run: pnpm commitlint --edit {1}
+      run: "sed '/^Signed-off-by: /d' {1} | pnpm commitlint"

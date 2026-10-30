@@ -14,6 +14,12 @@ This corpus documents how the two surfaces fit together, the day-to-day develope
 - [Workflows](workflows.md) — the `pnpm` command surface for local dev, checks, and deploy, and how to add a writing post.
 - [Agent surfaces](agent-surfaces.md) — `llms.txt`, `catalogue.json`, the OpenAPI description, the RFC 9727 API catalog, sitemaps, RSS, and the `robots.txt` crawl policy.
 
+The [agent documentation entrypoint](https://grosspoetry.systems/llms.txt) lists the projects and their published documentation. The [machine API catalog](https://grosspoetry.systems/.well-known/api-catalog) links to the catalogue JSON, OpenAPI description, and `llms.txt`, without duplicating catalogue data in this corpus.
+
+## Poolboy publication boundary
+
+These four documents are an additional Poolboy publication surface, not a replacement for the Worker/Astro site. `poolboy check` remains offline. The publication build may opt into bounded `--discover` traversal; network failures or unavailable remote publications can make discovery partial. Discovered publications remain separate external references with pinned remote identities, not trusted local source.
+
 ## House rules
 
 `AGENTS.md` governs changes: site copy comes from the owner, no person's name appears anywhere, and `robots.txt` deliberately blocks AI-training crawlers. Keep those intact.

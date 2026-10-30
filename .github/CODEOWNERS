@@ -1,0 +1,24 @@
+# grosspoetry.systems currently has one maintainer.
+* @thekidnamedkd
+
+/.github/ @thekidnamedkd
+/.github/workflows/ @thekidnamedkd
+/scripts/ @thekidnamedkd
+/tests/ @thekidnamedkd
+/.pr_agent.toml @thekidnamedkd
+/AGENTS.md @thekidnamedkd
+/SECURITY.md @thekidnamedkd
+/CONTRIBUTING.md @thekidnamedkd
+/CODE_OF_CONDUCT.md @thekidnamedkd
+
+# Dependency manifests, lockfiles, generators, and release configuration.
+/package.json @thekidnamedkd
+/pages/package.json @thekidnamedkd
+/pnpm-lock.yaml @thekidnamedkd
+/pnpm-workspace.yaml @thekidnamedkd
+/commitlint.config.js @thekidnamedkd
+/lefthook.yml @thekidnamedkd
+/terrazzo.config.ts @thekidnamedkd
+/vite.config.ts @thekidnamedkd
+/vitest.config.ts @thekidnamedkd
+/wrangler.jsonc @thekidnamedkd

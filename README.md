@@ -6,12 +6,14 @@ Read the [site documentation](docs/index.md) for the architecture, workflows, an
 
 The optional documentation publication is separate from `grosspoetry.systems`; it does not replace the Worker, Astro routes, or custom domain.
 
-Check, build, and read the documentation locally with the pinned Poolboy release:
+Check, build the documentation publication, and read it locally with the pinned Poolboy release:
 
 ```sh
-npx --yes --package=@grosspoetrysystems/poolboy@0.3.0 -- poolboy check
-npx --yes --package=@grosspoetrysystems/poolboy@0.3.0 -- poolboy build
-npx --yes --package=@grosspoetrysystems/poolboy@0.3.0 -- poolboy read index.md
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy check
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy build --discover
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy read index.md
 ```
+
+`poolboy check` remains offline. `--discover` is only on the publication build; omit it for an offline, deterministic local build.
 
 After human content review and merge, an administrator can enable GitHub Pages at **Settings → Pages → GitHub Actions**, then manually run the Poolboy docs workflow on `main`.

@@ -1,6 +1,7 @@
 import { Drawer } from "@base-ui/react/drawer";
 import { useCallback, useState } from "react";
 
+import { Mark } from "@/components/mark";
 import { SiteIndex } from "@/components/site-index";
 
 export const MobileIndex = () => {
@@ -9,8 +10,12 @@ export const MobileIndex = () => {
 
   return (
     <div className="rule-b bg-background px-gutter sticky top-0 z-40 flex items-center justify-between py-3 md:hidden">
-      <a className="label font-bold no-underline" href="#masthead">
-        GPS
+      <a
+        aria-label="Gross Poetry Systems"
+        className="no-underline"
+        href="#masthead"
+      >
+        <Mark className="block size-5" />
       </a>
       <Drawer.Root onOpenChange={setOpen} open={open} swipeDirection="down">
         <Drawer.Trigger className="label cursor-pointer">Index</Drawer.Trigger>

@@ -16,6 +16,9 @@ sources:
   - resource: pages/src/pages/og/[...card].png.ts
   - resource: pages/src/layouts/page.astro
   - resource: src/lib/share.ts
+  - resource: .github/workflows/poolboy-docs.yml
+  - resource: scripts/unlinked-docs.ts
+  - resource: poolboy.toml
 ---
 
 # Workflows
@@ -41,16 +44,32 @@ All commands run from the repository root with `pnpm`. Most scripts re-run `pnpm
 
 `pnpm fix` runs `ultracite fix` for autofixable lint issues.
 
+## Poolboy documentation publication
+
+The checked-in `.github/workflows/poolboy-docs.yml` pins `@grosspoetrysystems/poolboy@0.4.0`. Its `poolboy check` stays offline. The publication build alone opts into `poolboy build --discover`; the workflow uploads and deploys that separate GitHub Pages publication only for a manual `workflow_dispatch` on `main`. It does not replace the Worker/Astro deployment.
+
+The equivalent local commands are:
+
+```sh
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy check
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy build --discover
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy read index.md
+```
+
+`--discover` follows bounded HTTPS references from the corpus and admitted source files. It can be network-dependent and partial when a remote publication is unavailable; discovered publications remain separate external references with pinned remote identities, not trusted local corpus content. Omitting `--discover` keeps a local build offline and deterministic.
+
 ### Git hooks
 
 `lefthook.yml` installs hooks on `pnpm prepare`:
 
 - **pre-commit** lints and auto-fixes staged `*.{ts,tsx,js,json,jsonc,css}` files only — it does not typecheck or test, so run `pnpm check` yourself.
-- **commit-msg** enforces Conventional Commits with an empty body (`commitlint.config.js`). Footers are allowed; use `git commit -s` to provide the sign-off required by the repository's DCO check.
+- **commit-msg** enforces Conventional Commits with an empty body and no footers (`commitlint.config.js`). The hook removes `Signed-off-by` before linting, so `git commit -s` supplies the required DCO sign-off without tripping the footer rule.
 
 ## Deploy
 
-`pnpm deploy` runs `pnpm build` then `wrangler deploy`. Deploy only when the owner says so, then load the changed pages on `grosspoetry.systems` to confirm (`AGENTS.md`). The script clears `CF_API_TOKEN` and `CF_ACCOUNT_ID` from the env so Wrangler uses its own auth.
+`pnpm deploy` runs `node scripts/unlinked-docs.ts`, then `pnpm build`, then `wrangler deploy`. Deploy only when the owner says so, then load the changed pages on `grosspoetry.systems` to confirm (`AGENTS.md`). The script clears `CF_API_TOKEN` and `CF_ACCOUNT_ID` from the env so Wrangler uses its own auth.
+
+Before the build, `scripts/unlinked-docs.ts` checks released products without a `graph` and pending products without `docs`. It probes the default GitHub Pages URL and any explicit docs URL for a live `graph.json`; a live unlinked graph blocks deployment, while offline or other network failures do not. This guard preserves the existing catalogue links and does not add per-project deployment wiring.
 
 ## Add a writing post
 

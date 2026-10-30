@@ -122,15 +122,21 @@ export const Wall = () => (
     {PENDING.map((p) => (
       <Pin
         badge="Pending"
+        href={`/${p.id}/`}
         id={p.id}
         key={p.id}
         name={p.name}
         picture={p.picture}
-        href={p.source}
         summary={p.summary}
       >
         <div className="label">
           {p.kind}
+          {p.docs ? (
+            <>
+              {" · "}
+              <ExternalLink href={p.docs}>docs</ExternalLink>
+            </>
+          ) : null}
           {p.source ? (
             <>
               {" · "}
