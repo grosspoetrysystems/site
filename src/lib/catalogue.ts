@@ -51,7 +51,7 @@ export const PRODUCTS: readonly Product[] = [
     summary:
       "Maintain software documentation as portable Markdown, then compile it into a static corpus agents can query.",
     install: "npm install --global @grosspoetrysystems/poolboy",
-    version: "v0.3.0",
+    version: "v0.4.0",
     license: "GPL-3.0-only",
     links: [
       { label: "docs", href: "https://poolboy.sh/docs/" },
