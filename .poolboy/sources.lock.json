@@ -1,6 +1,6 @@
 {
   "version": "0",
-  "revision": "9f79be5cdf3ef50d9c3436dc633fdf6a4c7b6c59",
+  "revision": "ded36a11894d81d4b3a19ddbe9935c25d3cd3b09",
   "files": {
     ".github/CODEOWNERS": {
       "type": "other",
@@ -35,7 +35,7 @@
     ".github/helicopter/version.json": {
       "type": "json",
       "bytes": 82,
-      "sha256": "1daff59da909df7e8258b63ac4e678bc156fe388cde4c62ae2a63538a8246cde"
+      "sha256": "a3323e2f00ef24f9036392ffb24d254474f5c504d4fdb71cfbe9481f75a095d1"
     },
     ".github/pull_request_template.md": {
       "type": "markdown",
@@ -60,7 +60,7 @@
     ".github/workflows/helicopter-release.yml": {
       "type": "yaml",
       "bytes": 758,
-      "sha256": "3e5f9ac3251d0466e603c3737ceda274992f25bcc84991991269f7afcad387ca"
+      "sha256": "3b8e1d13fd83157055774696d036db21f5bbd45918cc2a42119fa03f2f0b00d8"
     },
     ".github/workflows/poolboy-docs.yml": {
       "type": "yaml",
@@ -259,18 +259,18 @@
     },
     "scripts/configure_repository.py": {
       "type": "python",
-      "bytes": 8267,
-      "sha256": "f3e094a7ed96439b71a72c6d84e9c28a495d4b34dfcea62eb07809462f02c70c"
+      "bytes": 8389,
+      "sha256": "01667bb4e7ce203fda008b30df8ae50284ea78298fe5950999963573263e23e6"
     },
     "scripts/pr_queue.py": {
       "type": "python",
-      "bytes": 19651,
-      "sha256": "b9feb1b72f6ac9f594f5a4e23e2a19e048e520b8f37784270def990af118ec49"
+      "bytes": 19782,
+      "sha256": "dbb7f0f4e1f06b09e688848c0e0e29c096096a8932168ba9fd08d0cbf0dde822"
     },
     "scripts/risk_labels.py": {
       "type": "python",
-      "bytes": 12384,
-      "sha256": "39e74909a8f27bdeebaa3e898b02e113d93454937ee3d5cf47b7e99f8ee74a9c"
+      "bytes": 13466,
+      "sha256": "267f5969aa3715e55ed554735beae24a9705b0e1c71e741708856ee37603f88a"
     },
     "scripts/unlinked-docs.ts": {
       "type": "typescript",
@@ -409,18 +409,18 @@
     },
     "tests/test_check_install.py": {
       "type": "python",
-      "bytes": 11246,
-      "sha256": "cd48d96de9055a6ae74039ae6fc08a1c89c54727d974a6e0f06bfea1950cce7d"
+      "bytes": 11578,
+      "sha256": "f3d5ace0852b37a38f7557b1437cc9b8cac212c0533c727792323e5d99ac3f47"
     },
     "tests/test_ramp.py": {
       "type": "python",
-      "bytes": 12944,
-      "sha256": "23e74ac8e2f7e8bfc5605bf68e2ccc790855fc59f6be9660db45481a73fb0380"
+      "bytes": 14412,
+      "sha256": "a97fb2606d69e6d509f1b0ffd03b4e3bb92919c5675a909e24eeed4ad7ea99bf"
     },
     "tests/test_risk_labels.py": {
       "type": "python",
-      "bytes": 4879,
-      "sha256": "e00c60689725e3da80fdc3f85e59b8f20d1d03e5e3dce62737bc6f0431d1f41f"
+      "bytes": 6031,
+      "sha256": "790373d2908e1dc131f113395fbf885f27b50d72cd94a98fc7df122f905f343d"
     },
     "tests/test_validate_pr.py": {
       "type": "python",
