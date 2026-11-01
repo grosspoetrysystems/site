@@ -46,14 +46,14 @@ All commands run from the repository root with `pnpm`. Most scripts re-run `pnpm
 
 ## Poolboy documentation publication
 
-The checked-in `.github/workflows/poolboy-docs.yml` pins `@grosspoetrysystems/poolboy@0.4.0`. Its `poolboy check` stays offline. The publication build alone opts into `poolboy build --discover`; the workflow uploads and deploys that separate GitHub Pages publication only for a manual `workflow_dispatch` on `main`. It does not replace the Worker/Astro deployment.
+The checked-in `.github/workflows/poolboy-docs.yml` pins `@grosspoetrysystems/poolboy@0.4.1`. Its `poolboy check` stays offline. The publication build alone opts into `poolboy build --discover`; the workflow uploads and deploys that separate GitHub Pages publication only for a manual `workflow_dispatch` on `main`. It does not replace the Worker/Astro deployment.
 
 The equivalent local commands are:
 
 ```sh
-npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy check
-npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy build --discover
-npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy read index.md
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.1 -- poolboy check
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.1 -- poolboy build --discover
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.1 -- poolboy read index.md
 ```
 
 `--discover` follows bounded HTTPS references from the corpus and admitted source files. It can be network-dependent and partial when a remote publication is unavailable; discovered publications remain separate external references with pinned remote identities, not trusted local corpus content. Omitting `--discover` keeps a local build offline and deterministic.

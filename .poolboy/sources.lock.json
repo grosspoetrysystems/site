@@ -1,6 +1,6 @@
 {
   "version": "0",
-  "revision": "493f4e1d1a0158f1398730f8d31210f7b9d997a6",
+  "revision": "9f79be5cdf3ef50d9c3436dc633fdf6a4c7b6c59",
   "files": {
     ".github/CODEOWNERS": {
       "type": "other",
@@ -65,7 +65,7 @@
     ".github/workflows/poolboy-docs.yml": {
       "type": "yaml",
       "bytes": 1719,
-      "sha256": "21eaf426d5d8d3c2e58e7756e6e8d583185a8adf4678a9a663f8a51d643f2725"
+      "sha256": "21fe7c53af6d0ad5fc7fb2edf9843bfe481b289210b26da35b2941ec2425b72c"
     },
     ".github/workflows/site-check.yml": {
       "type": "yaml",
@@ -100,7 +100,7 @@
     "README.md": {
       "type": "markdown",
       "bytes": 1312,
-      "sha256": "2518f86fdd60963d2c67e0ffc0efb41234a7f2acf96175471abbb7d77a0b1a38"
+      "sha256": "5762bc4eabba5a9dd7e4fd910f35d56a982007083bcb0fee2fc09709d8a63d41"
     },
     "SECURITY.md": {
       "type": "markdown",
@@ -340,7 +340,7 @@
     "src/lib/catalogue.ts": {
       "type": "typescript",
       "bytes": 5894,
-      "sha256": "bf7ad4b25c8b1f14469e899eb03c3d0c285ae4c78132b5f52d9870228180202f"
+      "sha256": "944c537d2e547b88e20566ea0698fe609f2122f6e9a9fa5b879de602d0a9555a"
     },
     "src/lib/palette.test.ts": {
       "type": "typescript",

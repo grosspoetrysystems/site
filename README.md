@@ -9,9 +9,9 @@ The optional documentation publication is separate from `grosspoetry.systems`; i
 Check, build the documentation publication, and read it locally with the pinned Poolboy release:
 
 ```sh
-npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy check
-npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy build --discover
-npx --yes --package=@grosspoetrysystems/poolboy@0.4.0 -- poolboy read index.md
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.1 -- poolboy check
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.1 -- poolboy build --discover
+npx --yes --package=@grosspoetrysystems/poolboy@0.4.1 -- poolboy read index.md
 ```
 
 `poolboy check` remains offline. `--discover` is only on the publication build; omit it for an offline, deterministic local build.
